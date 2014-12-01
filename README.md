@@ -5,4 +5,5 @@
   - Prime factorization
   - Euler Phi 
   - Solve Diophantine Equations
+
 # Data Structures
