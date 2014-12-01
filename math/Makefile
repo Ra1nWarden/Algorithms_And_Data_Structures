@@ -3,7 +3,7 @@ GTEST_DIR = ../gtest-1.7.0/
 CPPFLAGS += -isystem $(GTEST_DIR)/include
 CXXFLAGS += -g -Wall -Wextra -pthread
 
-TESTS = test1
+TESTS = primes_test
 
 GTEST_HEADERS = $(GTEST_DIR)/include/gtest/*.h \
                 $(GTEST_DIR)/include/gtest/internal/*.h
@@ -29,11 +29,14 @@ gtest.a : gtest-all.o
 gtest_main.a : gtest-all.o gtest_main.o
 	$(AR) $(ARFLAGS) $@ $^
 
-test1.o : test1.cpp $(GTEST_HEADERS)
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c test1.cpp
+primes.o : Primes.cpp
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c Primes.cpp
 
-test1 : test1.o gtest_main.a
+primes_test.o : Primes_test.cpp
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c Primes_test.cpp
+
+primes_test : primes.o primes_test.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
 
-test : test1
-	./$(TESTS)
+test : primes_test
+	./primes_test
