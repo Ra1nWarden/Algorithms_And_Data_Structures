@@ -50,10 +50,10 @@ int EulerPhi(int number) {
   for(map<int, int>::iterator itr = facts.begin(); itr != facts.end(); itr++) {
     // excluding the special case when number is 1
     if(itr->first != 1) {
-      number = number / itr->first * (itr->first - 1);
+      result = result / itr->first * (itr->first - 1);
     }
   }
-  return number;
+  return result;
 }
 
 int CountFactors(int number) {

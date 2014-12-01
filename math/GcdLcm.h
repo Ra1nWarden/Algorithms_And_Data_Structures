@@ -16,10 +16,13 @@ int GreatestCommonDivisor(int a, int b);
 int LeastCommonMultiple(int a, int b);
 
 // Returns a pair of integer solutions x, y of the equation ax + by = c
-// Let d = gcd(x, y), there is NO such solutions if d does not divide c
+// Let d = gcd(a, b), there is NO such solutions if d does not divide c
 // ATTENTION: This function assumes that d divides c
 // More solutions can be found using x = x0 + (b/d)n and y = y0 - (a/d)n
-// ExtendedEuclid is the helper function to find the first solution
+// ExtendedEuclid is the helper function to find the first solution when c = d
+
+// Accoring to UVA 10104, the pair of solutions returned from this funciton
+// satisfy the fact that |x| + |y| is minimal
 pair<int, int> ExtendedEuclid(int a, int b);
 pair<int, int> SolveDiophantine(int a, int b, int c);
 
