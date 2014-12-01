@@ -32,7 +32,7 @@ gtest_main.a : gtest-all.o gtest_main.o
 primes.o : Primes.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c Primes.cpp
 
-primes_test.o : Primes_test.cpp
+primes_test.o : Primes_test.cpp $(GTEST_HEADERS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c Primes_test.cpp
 
 primes_test : primes.o primes_test.o gtest_main.a
