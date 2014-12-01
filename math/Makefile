@@ -29,14 +29,14 @@ gtest.a : gtest-all.o
 gtest_main.a : gtest-all.o gtest_main.o
 	$(AR) $(ARFLAGS) $@ $^
 
-primes.o : Primes.cpp
+Primes.o : Primes.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c Primes.cpp
 
-primes_test.o : Primes.cpp Primes_test.cpp $(GTEST_HEADERS)
+Primes_test.o : Primes.cpp Primes_test.cpp $(GTEST_HEADERS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c Primes_test.cpp
 
-primes_test : primes.o primes_test.o gtest_main.a
+Primes_test : Primes.o Primes_test.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
 
-test : primes_test
-	./primes_test
+test : Primes_test
+	./Primes_test

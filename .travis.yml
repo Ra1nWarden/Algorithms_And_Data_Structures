@@ -1,6 +1,4 @@
 language: cpp
 
 script:
-- cd math && make
-- ls
-- make test
+- cd math && make test
