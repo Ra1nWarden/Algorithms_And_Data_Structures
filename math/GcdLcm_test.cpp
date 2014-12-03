@@ -55,4 +55,27 @@ TEST(SolveDiophantine, TestThree) {
   EXPECT_EQ(sol.first * 10 + sol.second * 5, 50);
 }
 
+TEST(SolveDiophantine, NegativeOne) {
+  // -x + 3y = 6
+  pair<int, int> sol = SolveDiophantine(-1, 3, 6);
+  EXPECT_EQ(sol.first * -1 + sol.second * 3, 6);
+}
+
+TEST(SolveDiophantine, NegativeTwo) {
+  // -3x - 2y = -8
+  pair<int, int> sol = SolveDiophantine(-3, -2, -8);
+  EXPECT_EQ(sol.first * -3 + sol.second * -2, -8);
+}
+
+TEST(SolveDiophantine, ZeroOne) {
+  // 0x + 2y = 8
+  pair<int, int> sol = SolveDiophantine(0, 2, 8);
+  EXPECT_EQ(sol.first * 0 + sol.second * 2, 8);
+}
+
+TEST(SolveDiophantine, ZeroTwo) {
+  // x + 2y = 0
+  pair<int, int> sol = SolveDiophantine(1, 2, 0);
+  EXPECT_EQ(sol.first * 1 + sol.second * 2, 0);
+}
 
