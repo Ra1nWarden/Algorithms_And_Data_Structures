@@ -5,5 +5,9 @@
   - Prime factorization
   - Euler Phi 
   - Solve Diophantine Equations
+  - Permutation and Combinations
+  - Factorial
+  - Catalan Numbers
+  - Derangement
 
 # Data Structures
