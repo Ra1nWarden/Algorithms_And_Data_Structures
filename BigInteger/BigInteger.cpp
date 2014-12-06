@@ -1,5 +1,6 @@
 #include "BigInteger.h"
 #include <cstdlib>
+#include <sstream>
 
 ostream& operator<<(ostream& oss, const BigInteger& rhs) {
   if(!rhs.positive)
@@ -38,6 +39,14 @@ BigInteger::BigInteger(string num) {
   for(int i = 0; i < num.length(); i++) {
     digits[num.length() - i - 1] = atoi(num.substr(i, 1).c_str());
   }
+}
+
+BigInteger::BigInteger(long long num) {
+  stringstream ss;
+  ss << num;
+  BigInteger dummy(ss.str());
+  positive = dummy.positive;
+  digits = dummy.digits;
 }
 
 BigInteger BigInteger::operator=(const BigInteger& rhs) {

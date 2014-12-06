@@ -58,6 +58,22 @@ TEST(BigIntegerConstructor, StringConstructorNegative) {
   }
 }
 
+TEST(BigIntegerConstructor, LongLongConstructorPositive) {
+  long long num = 123456789012345;
+  string numstr = "123456789012345";
+  BigInteger one(num);
+  BigInteger two(numstr);
+  EXPECT_EQ(one, two);
+}
+
+TEST(BigIntegerConstructor, LongLongConstructorNegative) {
+  long long num = -123456789012345;
+  string numstr = "-123456789012345";
+  BigInteger one(num);
+  BigInteger two(numstr);
+  EXPECT_EQ(one, two);
+}
+
 TEST(BigIntegerEqualTo, Positive) {
   BigInteger lhs(posnum1);
   BigInteger rhs(posnum1);

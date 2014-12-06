@@ -12,6 +12,7 @@ struct BigInteger {
 
   BigInteger();
   BigInteger(string num);
+  BigInteger(long long num);
   BigInteger operator=(const BigInteger& rhs);
   
   bool operator<(const BigInteger& rhs) const;
