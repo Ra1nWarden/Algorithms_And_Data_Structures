@@ -2,3 +2,4 @@ language: cpp
 
 script:
 - cd math && make test
+- cd ../BigInteger && make test
