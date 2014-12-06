@@ -12,32 +12,32 @@ TEST(GeneratePrime, Two) {
 
 TEST(GeneratePrime, Three) {
   vector<int> primes = GeneratePrime(3);
-  EXPECT_EQ(primes.size(), 1);
-  EXPECT_EQ(primes[0], 2);
+  EXPECT_EQ(1, primes.size());
+  EXPECT_EQ(2, primes[0]);
 }
 
 TEST(GeneratePrime, Twenty) {
   vector<int> primes = GeneratePrime(20);
   int expected[] = {2, 3, 5, 7, 11, 13, 17, 19};
-  EXPECT_EQ(primes.size(), 8);
+  EXPECT_EQ(8, primes.size());
   for(int i = 0; i < primes.size(); i++) {
-    EXPECT_EQ(primes[i], expected[i]);
+    EXPECT_EQ(expected[i], primes[i]);
   }
 }
 
 TEST(PrimeFactorize, One) {
   map<int, int> facts = PrimeFactorize(1);
-  EXPECT_EQ(facts[1], 1);
+  EXPECT_EQ(1, facts[1]);
 }
 
 TEST(PrimeFactorize, Two) {
   map<int, int> facts = PrimeFactorize(2);
-  EXPECT_EQ(facts[2], 1);
+  EXPECT_EQ(1, facts[2]);
 }
 
 TEST(PrimeFactorize, Eight) {
   map<int, int> facts = PrimeFactorize(8);
-  EXPECT_EQ(facts[2], 3);
+  EXPECT_EQ(3, facts[2]);
 }
 
 TEST(PrimeFactorize,TwoThreeFiveSeven) {
@@ -54,46 +54,46 @@ TEST(PrimeFactorize,TwoThreeFiveSeven) {
 
 TEST(PrimeFactorize, Seventeen) {
   map<int, int> facts = PrimeFactorize(17);
-  EXPECT_EQ(facts[17], 1);
+  EXPECT_EQ(1, facts[17]);
 }
 
 TEST(EulerPhi, One) {
-  EXPECT_EQ(EulerPhi(1), 1);
+  EXPECT_EQ(1, EulerPhi(1));
 }
 
 TEST(EulerPhi, Two) {
-  EXPECT_EQ(EulerPhi(2), 1);
+  EXPECT_EQ(1, EulerPhi(2));
 }
 
 TEST(EulerPhi, Eight) {
   // 8 -> (1, 3, 5, 7)
-  EXPECT_EQ(EulerPhi(8), 4);
+  EXPECT_EQ(4, EulerPhi(8));
 }
 
 TEST(EulerPhi, Eighteen) {
   // 18 -> (1, 5, 7, 11, 13, 17)
-  EXPECT_EQ(EulerPhi(18), 6);
+  EXPECT_EQ(6, EulerPhi(18));
 }
 
 TEST(EulerPhi, Seventeen) {
   // 17 is prime so the result is 17 - 1 = 16 (17 is excluded)
-  EXPECT_EQ(EulerPhi(17), 16);
+  EXPECT_EQ(16, EulerPhi(17));
 }
 
 TEST(CountFactors, One) {
-  EXPECT_EQ(CountFactors(1), 1);
+  EXPECT_EQ(1, CountFactors(1));
 }
 
 TEST(CountFactors, Eight) {
-  EXPECT_EQ(CountFactors(8), 4);
+  EXPECT_EQ(4, CountFactors(8));
 }
 
 TEST(CountFactors, TwentyFour) {
-  EXPECT_EQ(CountFactors(24), 8);
+  EXPECT_EQ(8, CountFactors(24));
 }
 
 TEST(CountFactors, Seventeen) {
-  EXPECT_EQ(CountFactors(17), 2);
+  EXPECT_EQ(2, CountFactors(17));
 }
 
 TEST(IsPrime, One) {
