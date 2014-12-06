@@ -50,10 +50,9 @@ BigInteger::BigInteger(long long num) {
 }
 
 BigInteger BigInteger::operator=(const BigInteger& rhs) {
-  BigInteger result;
-  result.positive = rhs.positive;
-  result.digits = rhs.digits;
-  return result;
+  positive = rhs.positive;
+  digits = rhs.digits;
+  return *this;
 }
 
 bool BigInteger::operator<(const BigInteger& rhs) const {

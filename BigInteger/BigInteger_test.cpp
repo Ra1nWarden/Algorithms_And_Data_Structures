@@ -94,15 +94,19 @@ TEST(BigIntegerEqualTo, Negative) {
 
 
 TEST(BigIntegerAssignment, Positive) {
-  BigInteger num(posnum1);
-  BigInteger copy = num;
-  EXPECT_EQ(num, copy);
+  BigInteger lhs(posnum1);
+  BigInteger rhs(posnum2);
+  EXPECT_NE(lhs, rhs);
+  lhs = rhs;
+  EXPECT_EQ(lhs, rhs);
 }
 
 TEST(BigIntegerAssignment, Negative) {
-  BigInteger num(negnum1);
-  BigInteger copy = negnum1;
-  EXPECT_EQ(num, copy);
+  BigInteger lhs(negnum1);
+  BigInteger rhs(negnum2);
+  EXPECT_NE(lhs, rhs);
+  lhs = rhs;
+  EXPECT_EQ(lhs, rhs);
 }
 
 TEST(BigIntegerLessThan, Positive) {
