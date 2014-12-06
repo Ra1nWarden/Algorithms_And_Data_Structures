@@ -10,6 +10,20 @@ ostream& operator<<(ostream& oss, const BigInteger& rhs) {
   return oss;
 }
 
+void RemoveLeadingZeros(vector<int>& digits) {
+  bool removed = false;
+  for(int i = digits.size() - 1; i >= 0; i--) {
+    if(digits[i] != 0) {
+      digits.resize(i + 1);
+      removed = true;
+      break;
+    }
+  }
+  if(!removed) {
+    digits.resize(1);
+  }
+} 
+
 // Initialize to zero, positive is default to true
 BigInteger::BigInteger() {
   digits.push_back(0);
@@ -192,12 +206,7 @@ BigInteger BigInteger::operator-(const BigInteger& rhs) const {
 	result.digits.push_back(up - down);
       }
       // Remove leading zeros
-      for(int i = result.digits.size() - 1; i >= 0; i--) {
-	if(result.digits[i] != 0) {
-	  result.digits.resize(i + 1);
-	  break;
-	}
-      }
+      RemoveLeadingZeros(result.digits);
       return result;
     } else {
       BigInteger dummylhs = *this;
@@ -217,4 +226,33 @@ BigInteger BigInteger::operator-(const BigInteger& rhs) const {
       return -(dummylhs + rhs);
     }
   }
+}
+
+BigInteger BigInteger::operator*(const BigInteger& rhs) const {
+  BigInteger result;
+  result.positive = positive == rhs.positive ? true : false;
+  for(int i = 0; i < rhs.digits.size(); i++) {
+    int dig = rhs.digits[i];
+    vector<int> step(digits.size());
+    for(int j = 0; j < digits.size(); j++) {
+      step[j] = digits[j] * dig;
+    }
+    result.digits.resize(i + step.size() + 1, 0);
+    for(int j = 0; j < step.size(); j++) {
+      result.digits[i + j] += step[j];
+    }
+  }
+  int carry = 0;
+  for(int i = 0; i < result.digits.size(); i++) {
+    result.digits[i] += carry;
+    carry = result.digits[i] / 10;
+    result.digits[i] %= 10;
+  }
+  RemoveLeadingZeros(result.digits);
+  while(carry != 0) {
+    int nextdig = carry % 10;
+    carry /= 10;
+    result.digits.push_back(nextdig);
+  }
+  return result;
 }

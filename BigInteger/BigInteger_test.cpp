@@ -4,17 +4,20 @@
 static const string posnum1 = "2326675176257368192873981264861287357126868767846376487364343676";
 static const string posnum2 = "123628767832674892876382756687783628532576325765";
 static const string posnum3 = "2326675176257368192873981264861287357126868767846376487364343677";
-static const string negnum1 = "-2326675176257368192873981264861287357126868767846376487364343676";
-static const string negnum2 = "-123628767832674892876382756687783628532576325765";
+static const string negnum1 = "-" + posnum1;
+static const string negnum2 = "-" + posnum2;
 static const string negnum3 = "-2326675176257368192873981264861287357126868767846376487364343675";
 
 // posnum1 + posnum2
 static const string possum1 = "2326675176257368316502749097536180233509625455630005019940669441";
 // posnum1 + negnum2 = posnum1 - posnum2
 static const string possum2 = "2326675176257368069245213432186394480744112080062747954788017911";
-static const string negsum1 = "-2326675176257368316502749097536180233509625455630005019940669441";
-static const string negsum2 = "-2326675176257368069245213432186394480744112080062747954788017911";
+static const string negsum1 = "-" + possum1;
+static const string negsum2 = "-" + possum2;
 
+// posnum1 * posnum2
+static const string posprod = "287643985187570107498271519246946098643282829054192121182028927993624518149891401376351468927525631834793612140";
+static const string negprod = "-" + posprod;
 
 TEST(BigIntegerConstructor, Default) {
   BigInteger num;
@@ -339,4 +342,37 @@ TEST(BigIntegerSubtraction, Zero) {
   BigInteger one(posnum1);
   BigInteger zero("0");
   EXPECT_EQ(one, one - zero);
+}
+
+TEST(BigIntegerProduct, PositiveAndPositive) {
+  BigInteger one(posnum1);
+  BigInteger two(posnum2);
+  BigInteger prod(posprod);
+  EXPECT_EQ(prod, one * two);
+}
+
+TEST(BigIntegerProduct, PositiveAndNegative) {
+  BigInteger one(posnum1);
+  BigInteger two(negnum2);
+  BigInteger prod(negprod);
+  EXPECT_EQ(prod, one * two);
+}
+
+TEST(BigIntegerProduct, NegativeAndNegative) {
+  BigInteger one(negnum1);
+  BigInteger two(negnum2);
+  BigInteger prod(posprod);
+  EXPECT_EQ(prod, one * two);
+}
+
+TEST(BigIntegerProduct, Zero) {
+  BigInteger one(posnum1);
+  BigInteger zero("0");
+  EXPECT_EQ(zero, one * zero);
+}
+
+TEST(BigIntegerProduct, One) {
+  BigInteger one("1");
+  BigInteger two(posnum1);
+  EXPECT_EQ(two, one * two);
 }
