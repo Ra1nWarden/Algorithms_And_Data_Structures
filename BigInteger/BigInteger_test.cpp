@@ -19,6 +19,10 @@ static const string negsum2 = "-" + possum2;
 static const string posprod = "287643985187570107498271519246946098643282829054192121182028927993624518149891401376351468927525631834793612140";
 static const string negprod = "-" + posprod;
 
+// posnum1 / posnum2
+static const string posdiv = "18819852507196399";
+static const string negdiv = "-" + posdiv;
+
 TEST(BigIntegerConstructor, Default) {
   BigInteger num;
   ASSERT_EQ(1, num.digits.size());
@@ -395,4 +399,38 @@ TEST(BigIntegerProduct, One) {
   BigInteger one("1");
   BigInteger two(posnum1);
   EXPECT_EQ(two, one * two);
+}
+
+TEST(BigIntegerDivision, PositiveAndPositive) {
+  BigInteger one(posnum1);
+  BigInteger two(posnum2);
+  BigInteger div(posdiv);
+  EXPECT_EQ(div, one / two);
+}
+
+TEST(BigIntegerDivision, PositiveAndNegative) {
+  BigInteger one(posnum1);
+  BigInteger two(negnum2);
+  BigInteger div(negdiv);
+  EXPECT_EQ(div, one / two);
+}
+
+TEST(BigIntegerDivision, NegativeAndNegative) {
+  BigInteger one(negnum1);
+  BigInteger two(negnum2);
+  BigInteger div(posdiv);
+  EXPECT_EQ(div, one / two);
+}
+
+TEST(BigIntegerDivision, Zero) {
+  BigInteger one(posnum2);
+  BigInteger two(posnum1);
+  BigInteger zero(0);
+  EXPECT_EQ(zero, one / two);
+}
+
+TEST(BigIntegerDivision, One) {
+  BigInteger one(posnum1);
+  BigInteger two(1);
+  EXPECT_EQ(one, one / two);
 }

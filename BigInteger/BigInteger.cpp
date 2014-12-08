@@ -1,6 +1,7 @@
 #include "BigInteger.h"
 #include <cstdlib>
 #include <sstream>
+#include <algorithm>
 
 ostream& operator<<(ostream& oss, const BigInteger& rhs) {
   if(!rhs.positive)
@@ -262,5 +263,32 @@ BigInteger BigInteger::operator*(const BigInteger& rhs) const {
     carry /= 10;
     result.digits.push_back(nextdig);
   }
+  return result;
+}
+
+BigInteger BigInteger::operator/(const BigInteger& rhs) const {
+  int rwidth = digits.size() - rhs.digits.size() + 1;
+  rwidth = rwidth < 1 ? 1 : rwidth;
+  BigInteger result;
+  result.positive = positive == rhs.positive ? true : false;
+  result.digits.resize(rwidth, 0);
+  BigInteger remain = *this;
+  remain.positive = true;
+  for(int i = rwidth - 1; i >= 0; i--) {
+    BigInteger div = rhs;
+    div.positive = true;
+    for(int j = 0; j < i; j++) {
+      div.digits.insert(div.digits.begin(), 0);
+    }
+    for(int j = 9; j >= 0; j--) {
+      BigInteger mult(j);
+      if(div * mult <= remain) {
+	result.digits[i] = j;
+	remain = remain - div * mult;
+	break;
+      }
+    }
+  }
+  RemoveLeadingZeros(result.digits);
   return result;
 }
