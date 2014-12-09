@@ -292,3 +292,8 @@ BigInteger BigInteger::operator/(const BigInteger& rhs) const {
   RemoveLeadingZeros(result.digits);
   return result;
 }
+
+BigInteger BigInteger::operator%(const BigInteger& rhs) const {
+  BigInteger div = (*this) / rhs;
+  return *this - div * rhs;
+}

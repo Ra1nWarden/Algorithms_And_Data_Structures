@@ -23,6 +23,10 @@ static const string negprod = "-" + posprod;
 static const string posdiv = "18819852507196399";
 static const string negdiv = "-" + posdiv;
 
+// posnum % posnum2
+static const string posmodnum = "87284863284033102922383781455368923086705423441";
+static const string negmodnum = "-" + posmodnum; 
+
 TEST(BigIntegerConstructor, Default) {
   BigInteger num;
   ASSERT_EQ(1, num.digits.size());
@@ -433,4 +437,18 @@ TEST(BigIntegerDivision, One) {
   BigInteger one(posnum1);
   BigInteger two(1);
   EXPECT_EQ(one, one / two);
+}
+
+TEST(BigIntegerMod, Positive) {
+  BigInteger one(posnum1);
+  BigInteger two(posnum2);
+  BigInteger mod(posmodnum);
+  EXPECT_EQ(mod, one % two);
+}
+
+TEST(BigIntegerMod, Negative) {
+  BigInteger one(negnum1);
+  BigInteger two(posnum2);
+  BigInteger mod(negmodnum);
+  EXPECT_EQ(mod, one % two);
 }

@@ -39,15 +39,13 @@ long long Catalan(long long n) {
 long long CatalanR(long long n) {
   if(n == 0) {
     return 1;
-  } else {
-    return CatalanR(n - 1) * (4 * n - 2) / (n + 1);
   }
+  return CatalanR(n - 1) * (4 * n - 2) / (n + 1);
 }
 
 long long Derangement(long long n) {
   if(n == 0) {
     return 1;
-  } else {
-    return n * Derangement(n-1) + (n % 2 == 0 ? 1 : -1);
   }
+  return n * Derangement(n-1) + (n % 2 == 0 ? 1 : -1);
 }
