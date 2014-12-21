@@ -22,7 +22,7 @@ long long Combi(long long a, long long b) {
   // Save some calculation by the fact 
   // a choose b = a choose (a - b)
   if(b > a / 2) {
-    return Combi(a, b - a);
+    return Combi(a, a - b);
   }
   long long result = 1;
   for(long long i = 1; i <= b; i++) {

@@ -53,6 +53,14 @@ TEST(Combination, FiveCTwo) {
   EXPECT_EQ(10, Combi(5, 2));
 }
 
+TEST(Combination, FiveCThree) {
+  EXPECT_EQ(10, Combi(5, 3));
+}
+
+TEST(Combination, Identity) {
+  EXPECT_EQ(Combi(5, 3), Combi(5, 2));
+}
+
 TEST(Catalan, Zero) {
   EXPECT_EQ(1, Catalan(0));
   EXPECT_EQ(1, CatalanR(0));
