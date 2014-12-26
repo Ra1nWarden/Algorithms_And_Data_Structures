@@ -9,6 +9,7 @@
   - Factorial
   - Catalan Numbers
   - Derangement
+  - Floyd cycle finding
 
 # Data Structures
 - BigInteger
