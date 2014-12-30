@@ -10,6 +10,8 @@
   - Catalan Numbers
   - Derangement
   - Floyd cycle finding
+- String Processing
+  - Minimum Representation
 
 # Data Structures
 - BigInteger
