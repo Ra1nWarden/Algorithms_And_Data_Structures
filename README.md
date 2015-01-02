@@ -15,3 +15,4 @@
 
 # Data Structures
 - BigInteger
+- Suffix Array
