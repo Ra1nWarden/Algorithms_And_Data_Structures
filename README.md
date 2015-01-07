@@ -16,3 +16,4 @@
 # Data Structures
 - BigInteger
 - Suffix Array
+- Union Find Set
