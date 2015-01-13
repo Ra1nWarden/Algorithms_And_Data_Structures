@@ -2,6 +2,5 @@ language: cpp
 
 script:
 - cd math && make test
-- cd ../BigInteger && make test
 - cd ../string_processing && make test
 - cd ../data_structures && make test
