@@ -4,3 +4,4 @@ script:
 - cd math && make test
 - cd ../string_processing && make test
 - cd ../data_structures && make test
+- cd ../computational_geometry && make test

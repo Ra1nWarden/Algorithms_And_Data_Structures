@@ -10,6 +10,8 @@
   - Catalan Numbers
   - Derangement
   - Floyd cycle finding
+- Computational Geometry
+  - Point and Lines
 - String Processing
   - Minimum Representation
 
