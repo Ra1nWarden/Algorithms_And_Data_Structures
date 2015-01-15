@@ -3,7 +3,7 @@ GTEST_DIR = ../gtest-1.7.0/
 CPPFLAGS += -isystem $(GTEST_DIR)/include
 CXXFLAGS += -g -Wall -Wextra -pthread
 
-TESTS = UnionFindSet_test BigInteger_test
+TESTS = UnionFindSet_test BigInteger_test BinaryIndexTree_test
 
 GTEST_HEADERS = $(GTEST_DIR)/include/gtest/*.h \
                 $(GTEST_DIR)/include/gtest/internal/*.h
@@ -47,5 +47,14 @@ BigInteger_test.o : BigInteger_test.cpp
 BigInteger_test : BigInteger.o BigInteger_test.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
 
+BinaryIndexTree.o : BinaryIndexTree.cpp
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c BinaryIndexTree.cpp
+
+BinaryIndexTree_test.o : BinaryIndexTree_test.cpp
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c BinaryIndexTree_test.cpp
+
+BinaryIndexTree_test : BinaryIndexTree.o BinaryIndexTree_test.o gtest_main.a
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
+
 test : $(TESTS)
-	./UnionFindSet_test && ./BigInteger_test
+	./UnionFindSet_test && ./BigInteger_test && ./BinaryIndexTree_test
