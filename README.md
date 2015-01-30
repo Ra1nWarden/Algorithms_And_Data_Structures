@@ -19,3 +19,5 @@
 - BigInteger
 - Suffix Array
 - Union Find Set
+- Binary Index Tree
+- RMQ
