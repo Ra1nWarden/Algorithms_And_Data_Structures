@@ -30,6 +30,12 @@ TEST(TriangleOuterRadius, OuterRadius) {
   doubleEQ(OuterRadius(AreaPoint(p1, p3, p4), 3, 3, 3 * sqrt(2)), 1.5 * sqrt(2));
 }
 
+TEST(TriangleOuterCircleCenter, OuterCircleCenter) {
+  Point o = OuterCircleCenter(p1, p3, p4);
+  doubleEQ(o.x, 1.5);
+  doubleEQ(o.y, 1.5);
+}
+
 TEST(TriangleCosineRule, CosineRule1) {
   doubleEQ(CosineRule(3, 4, PI / 2), 5);
 }
