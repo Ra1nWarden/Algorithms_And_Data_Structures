@@ -3,7 +3,7 @@ GTEST_DIR = ../gtest-1.7.0/
 CPPFLAGS += -isystem $(GTEST_DIR)/include
 CXXFLAGS += -g -Wall -Wextra -pthread
 
-TESTS = Point_test Line_test
+TESTS = Point_test Line_test Triangle_test
 
 GTEST_HEADERS = $(GTEST_DIR)/include/gtest/*.h \
                 $(GTEST_DIR)/include/gtest/internal/*.h
@@ -47,5 +47,14 @@ Line_test.o : Line_test.cpp $(GTEST_HEADERS)
 Line_test : Point.o Line.o Line_test.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
 
+Triangle.o : Triangle.cpp
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c Triangle.cpp
+
+Triangle_test.o : Triangle_test.cpp $(GTEST_HEADERS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c Triangle_test.cpp
+
+Triangle_test : Point.o Line.o Triangle.o Triangle_test.o gtest_main.a
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
+
 test : $(TESTS)
-	./Point_test && ./Line_test
+	./Point_test && ./Line_test && ./Triangle_test

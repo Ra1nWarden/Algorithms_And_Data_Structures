@@ -11,7 +11,8 @@
   - Derangement
   - Floyd cycle finding
 - Computational Geometry
-  - Point and Lines
+  - Points and Lines
+  - Triangles
 - String Processing
   - Minimum Representation
 
