@@ -1,5 +1,5 @@
-#include "BinaryIndexTree.h"
 #include "gtest/gtest.h"
+#include "BinaryIndexTree.h"
 
 using namespace std;
 

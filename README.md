@@ -22,3 +22,4 @@
 - Union Find Set
 - Binary Index Tree
 - RMQ
+- Segment Tree

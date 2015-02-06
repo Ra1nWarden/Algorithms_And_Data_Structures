@@ -2,7 +2,7 @@
 #define DATA_STRUCTURE_BINARY_INDEX_TREE_H_
 
 // define MAXN according to maximum length of the array
-// remember to leave some room for maximum value
+// remember to leave some room for the maximum value
 #define MAXN 101
 
 using namespace std;
