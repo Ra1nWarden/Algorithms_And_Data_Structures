@@ -13,6 +13,7 @@
 - Computational Geometry
   - Points and Lines
   - Triangles
+  - Spheres
 - String Processing
   - Minimum Representation
 

@@ -3,7 +3,7 @@ GTEST_DIR = ../gtest-1.7.0/
 CPPFLAGS += -isystem $(GTEST_DIR)/include
 CXXFLAGS += -g -Wall -Wextra -pthread
 
-TESTS = Point_test Line_test Triangle_test
+TESTS = Point_test Line_test Triangle_test Sphere_test
 
 GTEST_HEADERS = $(GTEST_DIR)/include/gtest/*.h \
                 $(GTEST_DIR)/include/gtest/internal/*.h
@@ -30,7 +30,7 @@ gtest_main.a : gtest-all.o gtest_main.o
 	$(AR) $(ARFLAGS) $@ $^
 
 Point.o : Point.cpp
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c Point.cpp
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $^
 
 Point_test.o : Point_test.cpp $(GTEST_HEADERS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c Point_test.cpp
@@ -39,7 +39,7 @@ Point_test : Point.o Point_test.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
 
 Line.o : Line.cpp
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c Line.cpp
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $^
 
 Line_test.o : Line_test.cpp $(GTEST_HEADERS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c Line_test.cpp
@@ -48,7 +48,7 @@ Line_test : Point.o Line.o Line_test.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
 
 Triangle.o : Triangle.cpp
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c Triangle.cpp
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $^
 
 Triangle_test.o : Triangle_test.cpp $(GTEST_HEADERS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c Triangle_test.cpp
@@ -56,5 +56,14 @@ Triangle_test.o : Triangle_test.cpp $(GTEST_HEADERS)
 Triangle_test : Point.o Line.o Triangle.o Triangle_test.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
 
+Sphere.o : Sphere.cpp
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $^
+
+Sphere_test.o : Sphere_test.cpp $(GTEST_HEADERS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c Sphere_test.cpp
+
+Sphere_test : Point.o Line.o Sphere.o Sphere_test.o gtest_main.a
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
+
 test : $(TESTS)
-	./Point_test && ./Line_test && ./Triangle_test
+	./Point_test && ./Line_test && ./Triangle_test && ./Sphere_test
