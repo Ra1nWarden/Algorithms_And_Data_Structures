@@ -64,3 +64,11 @@ Point normal(Point A) {
   double L = dist(A);
   return Point(-A.y/L, A.x/L);
 }
+
+int turn(Point p, Point q, Point r) {
+  int res = (q - p) ^ (r - q);
+  if(res == 0)
+    return 0;
+  else
+    return res < 0 ? -1 : 1;
+}

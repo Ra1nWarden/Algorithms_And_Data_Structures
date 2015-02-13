@@ -36,4 +36,10 @@ double dist(Point p);
 // return unit normal vector
 Point normal(Point A);
 
+// determines whether p -> q -> r is a left/right turn
+// 1 -> left turn
+// -1 -> right turn
+// 0 -> collinear
+int turn(Point p, Point q, Point r);
+
 #endif

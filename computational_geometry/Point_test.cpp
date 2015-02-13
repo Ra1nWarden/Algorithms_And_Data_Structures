@@ -4,6 +4,7 @@
 const Point p1(1.5, 2.5);
 const Point p2(0, 4);
 const Point p3(3, 4);
+const Point p4(6, 4);
 
 void doubleEq(double x, double y) {
   EXPECT_EQ(0, sgn(x - y));
@@ -83,4 +84,18 @@ TEST(Point, Normal) {
   double k1 = p3.y / p3.x;
   double k2 = p4.y / p4.x;
   doubleEq(-1, k1 * k2);
+}
+
+TEST(Point, LeftTurn) {
+  EXPECT_EQ(1, turn(p2, p1, p3));
+}
+
+TEST(Point, RightTurn) {
+  EXPECT_EQ(-1, turn(p3, p1, p2));
+}
+
+TEST(Point, Collinear) {
+  EXPECT_EQ(0, turn(p2, p3, p4));
+  EXPECT_EQ(0, turn(p2, p4, p3));
+  EXPECT_EQ(0, turn(p3, p2, p4));
 }
