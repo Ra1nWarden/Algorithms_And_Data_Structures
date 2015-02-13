@@ -8,12 +8,7 @@ double AreaHeron(double a, double b, double c) {
 }
 
 double AreaPoint(Point a, Point b, Point c) {
-  double res = 0;
-  Point p[] = {a, b, c};
-  for(int i = 0; i < 3; i++) {
-    res += (p[i] ^ p[(i+1) % 3]) / 2;
-  }
-  return fabs(res);
+  return fabs((b - a) ^ (c - a) * 0.5);
 }
 
 double InnerRadius(double area, double perimeter) {
