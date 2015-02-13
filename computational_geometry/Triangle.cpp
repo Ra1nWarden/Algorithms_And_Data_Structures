@@ -33,3 +33,15 @@ double CosineRule(double a, double b, double angle) {
 double SineRule(double a, double A, double B) {
   return a / sin(A) * sin(B);
 }
+
+int TriangleContainsPoint(Point a, Point b, Point c, Point p) {
+  if(PointOnSeg(p, Line(a, b)) || PointOnSeg(p, Line(b, c)) || PointOnSeg(p, Line(a, c)))
+    return 0;
+  int turn1 = turn(a, p, b);
+  int turn2 = turn(b, p, c);
+  int turn3 = turn(c, p, a);
+  if(turn1 == turn2 && turn2 == turn3)
+    return 1;
+  else
+    return -1;
+}

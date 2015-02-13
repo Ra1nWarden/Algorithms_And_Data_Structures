@@ -20,5 +20,10 @@ Point OuterCircleCenter(Point a, Point b, Point c);
 double CosineRule(double a, double b, double angle); // angle is the angle between side a and side b
 // Returns the length of side B
 double SineRule(double a, double A, double B); // A is the angle opposite of side A
+// Returns whether the triangle ABC contains point p
+// -1 -> p is not in the triangle
+// 0 -> p is on the side of the triangle
+// 1 -> p is inside the triangle
+int TriangleContainsPoint(Point a, Point b, Point c, Point p);
 
 #endif
