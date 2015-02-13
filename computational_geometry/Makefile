@@ -3,7 +3,7 @@ GTEST_DIR = ../gtest-1.7.0/
 CPPFLAGS += -isystem $(GTEST_DIR)/include
 CXXFLAGS += -g -Wall -Wextra -pthread
 
-TESTS = Point_test Line_test Triangle_test Sphere_test
+TESTS = Point_test Line_test Triangle_test Sphere_test Polygon_test
 
 GTEST_HEADERS = $(GTEST_DIR)/include/gtest/*.h \
                 $(GTEST_DIR)/include/gtest/internal/*.h
@@ -65,5 +65,14 @@ Sphere_test.o : Sphere_test.cpp $(GTEST_HEADERS)
 Sphere_test : Point.o Line.o Sphere.o Sphere_test.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
 
+Polygon.o : Polygon.cpp
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $^
+
+Polygon_test.o : Polygon_test.cpp $(GTEST_HEADERS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c Polygon_test.cpp
+
+Polygon_test : Point.o Line.o Polygon.o Polygon_test.o gtest_main.a
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
+
 test : $(TESTS)
-	./Point_test && ./Line_test && ./Triangle_test && ./Sphere_test
+	./Point_test && ./Line_test && ./Triangle_test && ./Sphere_test && ./Polygon_test

@@ -3,6 +3,8 @@
 
 using namespace std;
 
+Line::Line() {}
+
 Line::Line(Point _s, Point _e) : s(_s), e(_e) {}
 
 pair<int, Point> Line::operator&(const Line& b) const {
