@@ -25,5 +25,7 @@ double SineRule(double a, double A, double B); // A is the angle opposite of sid
 // 0 -> p is on the side of the triangle
 // 1 -> p is inside the triangle
 int TriangleContainsPoint(Point a, Point b, Point c, Point p);
+// Center of mass of triangle
+Point CenterOfMass(Point a, Point b, Point c);
 
 #endif

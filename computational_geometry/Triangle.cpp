@@ -45,3 +45,7 @@ int TriangleContainsPoint(Point a, Point b, Point c, Point p) {
   else
     return -1;
 }
+
+Point CenterOfMass(Point a, Point b, Point c) {
+  return (a + b + c) / 3;
+}

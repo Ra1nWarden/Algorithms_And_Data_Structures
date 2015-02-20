@@ -67,4 +67,13 @@ TEST(Triangle, TriangleContainsPointOutside) {
   EXPECT_EQ(-1, TriangleContainsPoint(p1, p3, p4, Point(2, 2)));
 }
 
-
+TEST(Triangle, TriangleCenterOfMass) {
+  Point com = CenterOfMass(p1, p2, p3);
+  Point mid12 = (p1 + p2) / 2;
+  Point mid23 = (p2 + p3) / 2;
+  Point mid13 = (p1 + p3) / 2;
+  // Test with the property that distance between center of mass to vertex is twice the distance between the center of mass and the mid point of the opposite side
+  doubleEQ(2 * dist(com, mid12), dist(com, p3));
+  doubleEQ(2 * dist(com, mid23), dist(com, p1));
+  doubleEQ(2 * dist(com, mid13), dist(com, p2));
+}
