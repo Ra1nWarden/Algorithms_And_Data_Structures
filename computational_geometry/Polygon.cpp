@@ -1,5 +1,6 @@
 #include "Polygon.h"
 #include <cstring>
+#include <algorithm>
 
 bool IsConvex(Point poly[], int n) {
   bool s[3];
@@ -96,17 +97,14 @@ void GrahamScan(int n) {
   }
   swap(list[k], list[0]);
   sort(list + 1, list + n, _cmp);
-  if(n == 1) {
-    top = 1;
-    Stack[0] = 0;
-    return;
-  }
+  top = 1;
   Stack[0] = 0;
+  if(n == 1)
+    return;
   Stack[1] = 1;
   top = 2;
-  if(n == 2) {
+  if(n == 2)
     return;
-  }
   for(int i = 2; i < n; i++) {
     while(top > 1 &&
 	  sgn((list[Stack[top - 1]] - list[Stack[top - 2]]) ^ (list[i] - list[Stack[top - 2]])) <= 0)
