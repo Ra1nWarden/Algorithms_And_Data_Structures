@@ -14,7 +14,7 @@
   - Points and Lines
   - Triangles
   - Spheres
-  - Polygon
+  - Polygons
 - String Processing
   - Minimum Representation
 

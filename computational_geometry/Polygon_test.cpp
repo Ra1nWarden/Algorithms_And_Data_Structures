@@ -47,3 +47,9 @@ TEST(Polygon, ConvextPolygonContainsPointOnTheSide) {
 TEST(Polygon, ConvextPolygonContainsPointOutside) {
   EXPECT_EQ(-1, ConvexPolygonContainsPoint(convexPoly, 7, Point(4, 6)));
 }
+
+TEST(Polygon, AreaPolygon) {
+  EXPECT_EQ(24, PolygonArea(concavePoly, 7));
+  EXPECT_EQ(27.75, PolygonArea(convexPoly, 7));
+  EXPECT_EQ(15, PolygonArea(rectanglePoly, 8));
+}
