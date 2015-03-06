@@ -25,3 +25,4 @@
 - Binary Index Tree
 - RMQ
 - Segment Tree
+- Rational
