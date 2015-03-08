@@ -1,4 +1,5 @@
 #include "KMP.h"
+#include <cstring>
 
 using namespace std;
 
