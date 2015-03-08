@@ -93,7 +93,6 @@ int TrieChildBrother::find(char* w) {
   int l = strlen(w);
   for(int i = 0; i < l; i++) {
     char nextchar = w[i];
-    bool found = false;
     int child = lchild[cur];
     while(child != 0) {
       if(ch[child] == nextchar)
@@ -112,7 +111,6 @@ void TrieChildBrother::del(char* w) {
   int l = strlen(w);
   for(int i = 0; i < l; i++) {
     char nextchar = w[i];
-    bool found = false;
     int child = lchild[cur];
     while(child != 0) {
       if(ch[child] == nextchar)

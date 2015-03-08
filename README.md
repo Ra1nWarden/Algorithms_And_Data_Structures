@@ -17,6 +17,7 @@
   - Polygons
 - String Processing
   - Minimum Representation
+  - KMP
 
 # Data Structures
 - BigInteger
