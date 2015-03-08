@@ -26,3 +26,4 @@
 - RMQ
 - Segment Tree
 - Rational
+- Trie

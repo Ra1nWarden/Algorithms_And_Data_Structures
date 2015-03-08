@@ -3,7 +3,7 @@ GTEST_DIR = ../gtest-1.7.0/
 CPPFLAGS += -isystem $(GTEST_DIR)/include
 CXXFLAGS += -g -Wall -Wextra -pthread
 
-TESTS = Miscellaneous_test SuffixArray_test
+TESTS = Miscellaneous_test SuffixArray_test Trie_test
 
 GTEST_HEADERS = $(GTEST_DIR)/include/gtest/*.h \
                 $(GTEST_DIR)/include/gtest/internal/*.h
@@ -47,5 +47,14 @@ Miscellaneous_test.o : Miscellaneous_test.cpp $(GTEST_HEADERS)
 Miscellaneous_test : Miscellaneous.o Miscellaneous_test.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
 
+Trie.o : Trie.cpp
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c Trie.cpp
+
+Trie_test.o : Trie_test.cpp $(GTEST_HEADERS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c Trie_test.cpp
+
+Trie_test : Trie.o Trie_test.o gtest_main.a
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
+
 test : $(TESTS)
-	./Miscellaneous_test && ./SuffixArray_test
+	./Miscellaneous_test && ./SuffixArray_test && ./Trie_test
