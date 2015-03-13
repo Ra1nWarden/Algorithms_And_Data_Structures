@@ -3,7 +3,7 @@ GTEST_DIR = ../gtest-1.7.0/
 CPPFLAGS += -isystem $(GTEST_DIR)/include
 CXXFLAGS += -g -Wall -Wextra -pthread
 
-TESTS = Miscellaneous_test SuffixArray_test Trie_test KMP_test
+TESTS = Miscellaneous_test SuffixArray_test Trie_test KMP_test AhoCorasickAutomata_test
 
 GTEST_HEADERS = $(GTEST_DIR)/include/gtest/*.h \
                 $(GTEST_DIR)/include/gtest/internal/*.h
@@ -65,5 +65,14 @@ KMP_test.o : KMP_test.cpp $(GTEST_HEADERS)
 KMP_test : KMP.o KMP_test.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
 
+AhoCorasickAutomata.o : AhoCorasickAutomata.cpp
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c AhoCorasickAutomata.cpp
+
+AhoCorasickAutomata_test.o : AhoCorasickAutomata_test.cpp $(GTEST_HEADERS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c AhoCorasickAutomata_test.cpp
+
+AhoCorasickAutomata_test : AhoCorasickAutomata.o AhoCorasickAutomata_test.o gtest_main.a
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
+
 test : $(TESTS)
-	./Miscellaneous_test && ./SuffixArray_test && ./Trie_test && ./KMP_test
+	./Miscellaneous_test && ./SuffixArray_test && ./Trie_test && ./KMP_test && ./AhoCorasickAutomata_test

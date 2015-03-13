@@ -28,3 +28,4 @@
 - Segment Tree
 - Rational
 - Trie
+- Aho Corasick Automata
