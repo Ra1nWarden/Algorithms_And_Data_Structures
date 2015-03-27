@@ -21,7 +21,7 @@ int BinaryIndexTree::sum(int x) {
 }
 
 void BinaryIndexTree::add(int x, int d) {
-  while(x <= MAXN) {
+  while(x <= MAXN - 1) { // Replace MAXN - 1 by the largest index among x
     C[x] += d;
     x += lowbit(x);
   }
