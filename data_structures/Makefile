@@ -3,7 +3,7 @@ GTEST_DIR = ../gtest-1.7.0/
 CPPFLAGS += -isystem $(GTEST_DIR)/include
 CXXFLAGS += -g -Wall -Wextra -pthread
 
-TESTS = UnionFindSet_test BigInteger_test BinaryIndexTree_test RMQ_test SegmentTree_test Rational_test
+TESTS = UnionFindSet_test BigInteger_test BinaryIndexTree_test RMQ_test SegmentTree_test Rational_test MonotonicQueue_test
 
 GTEST_HEADERS = $(GTEST_DIR)/include/gtest/*.h \
                 $(GTEST_DIR)/include/gtest/internal/*.h
@@ -74,6 +74,15 @@ SegmentTree_test.o : SegmentTree_test.cpp
 SegmentTree_test : SegmentTree.o SegmentTree_test.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
 
+MonotonicQueue.o :	MonotonicQueue.cpp
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $^
+
+MonotonicQueue_test.o : MonotonicQueue_test.cpp
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $^
+
+MonotonicQueue_test : MonotonicQueue.o MonotonicQueue_test.o gtest_main.a
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
+
 Rational.o : Rational.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $^
 
@@ -84,4 +93,4 @@ Rational_test : Rational.o Rational_test.o ../math/GcdLcm.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
 
 test : $(TESTS)
-	./UnionFindSet_test && ./BigInteger_test && ./BinaryIndexTree_test && ./RMQ_test && ./SegmentTree_test && ./Rational_test
+	./UnionFindSet_test && ./BigInteger_test && ./BinaryIndexTree_test && ./RMQ_test && ./SegmentTree_test && ./Rational_test && ./MonotonicQueue_test

@@ -29,3 +29,4 @@
 - Rational
 - Trie
 - Aho Corasick Automata
+- Monotonic Queue
