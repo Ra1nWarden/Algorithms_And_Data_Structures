@@ -26,6 +26,8 @@ struct Point {
   bool operator==(const Point& b) const;
   // rotate with respect to origin with B in radiant
   void transXY(double B);
+  // rotate with respect to point p
+  void transXY(double B, Point p);
 };
 
 // return distance between a and b

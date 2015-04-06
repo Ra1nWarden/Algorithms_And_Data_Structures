@@ -74,6 +74,20 @@ TEST(Point, TransXY) {
   doubleEq(3, p4.y);
 }
 
+TEST(Point, TransXYPoint) {
+  Point p4(p3);
+  p4.transXY(PI / 2, Point(3, 2));
+  doubleEq(1, p4.x);
+  doubleEq(2, p4.y);
+}
+
+TEST(Point, TransXYPoint2) {
+  Point p4(p3);
+  p4.transXY(PI, Point(3, 2));
+  doubleEq(3, p4.x);
+  doubleEq(0, p4.y);
+}
+
 TEST(Point, Distance) {
   doubleEq(5, dist(p3));
 }

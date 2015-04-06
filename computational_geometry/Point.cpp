@@ -46,9 +46,13 @@ bool Point::operator==(const Point& b) const {
 }
 
 void Point::transXY(double B) {
-  double tx = x, ty = y;
-  x = tx * cos(B) - ty * sin(B);
-  y = tx * sin(B) + ty * cos(B);
+  transXY(B, Point(0, 0));
+}
+
+void Point::transXY(double B, Point p) {
+  double tx = x - p.x, ty = y - p.y;
+  x = p.x + tx * cos(B) - ty * sin(B);
+  y = p.y + tx * sin(B) + ty * cos(B);
 }
 
 double dist(Point a, Point b) {
