@@ -32,6 +32,11 @@ struct BigInteger {
   BigInteger operator*(const BigInteger& rhs) const;
   BigInteger operator/(const BigInteger& rhs) const;
   BigInteger operator%(const BigInteger& rhs) const;
+  BigInteger operator+=(const BigInteger& rhs);
+  BigInteger operator-=(const BigInteger& rhs);
+  BigInteger operator*=(const BigInteger& rhs);
+  BigInteger operator/=(const BigInteger& rhs);
+  BigInteger operator%=(const BigInteger& rhs);
 };
 
 ostream& operator<<(ostream& oss, const BigInteger& rhs);

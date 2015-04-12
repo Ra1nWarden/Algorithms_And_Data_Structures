@@ -338,6 +338,14 @@ TEST(BigIntegerAddition, Zero) {
   EXPECT_EQ(one, one + zero);
 }
 
+TEST(BigIntegerAddition, AddEqual) {
+  BigInteger one(posnum1);
+  BigInteger two(posnum2);
+  BigInteger sum(possum1);
+  one += two;
+  EXPECT_EQ(sum, one);
+}
+
 TEST(BigIntegerSubtraction, PositiveAndPositive) {
   BigInteger one(posnum1);
   BigInteger two(posnum2);
@@ -372,6 +380,14 @@ TEST(BigIntegerSubtraction, Zero) {
   EXPECT_EQ(one, one - zero);
 }
 
+TEST(BigIntegerSubtraction, SubtractEqual) {
+  BigInteger one(posnum1);
+  BigInteger two(posnum2);
+  BigInteger sum(possum2);
+  one -= two;
+  EXPECT_EQ(sum, one);
+}
+
 TEST(BigIntegerProduct, PositiveAndPositive) {
   BigInteger one(posnum1);
   BigInteger two(posnum2);
@@ -403,6 +419,14 @@ TEST(BigIntegerProduct, One) {
   BigInteger one("1");
   BigInteger two(posnum1);
   EXPECT_EQ(two, one * two);
+}
+
+TEST(BigIntegerProduct, MultiplyEqual) {
+  BigInteger one(posnum1);
+  BigInteger two(posnum2);
+  BigInteger prod(posprod);
+  one *= two;
+  EXPECT_EQ(prod, one);
 }
 
 TEST(BigIntegerDivision, PositiveAndPositive) {
@@ -439,6 +463,14 @@ TEST(BigIntegerDivision, One) {
   EXPECT_EQ(one, one / two);
 }
 
+TEST(BigIntegerDivision, DivideEqual) {
+  BigInteger one(posnum1);
+  BigInteger two(posnum2);
+  BigInteger div(posdiv);
+  one /= two;
+  EXPECT_EQ(div, one);
+}
+
 TEST(BigIntegerMod, Positive) {
   BigInteger one(posnum1);
   BigInteger two(posnum2);
@@ -451,6 +483,14 @@ TEST(BigIntegerMod, Negative) {
   BigInteger two(posnum2);
   BigInteger mod(negmodnum);
   EXPECT_EQ(mod, one % two);
+}
+
+TEST(BigIntegerMod, ModEqual) {
+  BigInteger one(posnum1);
+  BigInteger two(posnum2);
+  BigInteger mod(posmodnum);
+  one %= two;
+  EXPECT_EQ(mod, one);
 }
 
 TEST(BigIntegerIO, Positive) {

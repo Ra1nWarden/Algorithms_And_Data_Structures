@@ -305,3 +305,28 @@ BigInteger BigInteger::operator%(const BigInteger& rhs) const {
   BigInteger div = (*this) / rhs;
   return *this - div * rhs;
 }
+
+BigInteger BigInteger::operator+=(const BigInteger& rhs) {
+  *this = *this + rhs;
+  return *this;
+}
+
+BigInteger BigInteger::operator-=(const BigInteger& rhs) {
+  *this = *this - rhs;
+  return *this;
+}
+
+BigInteger BigInteger::operator*=(const BigInteger& rhs) {
+  *this = *this * rhs;
+  return *this;
+}
+
+BigInteger BigInteger::operator/=(const BigInteger& rhs) {
+  *this = *this / rhs;
+  return *this;
+}
+
+BigInteger BigInteger::operator%=(const BigInteger& rhs) {
+  *this = *this % rhs;
+  return *this;
+}
