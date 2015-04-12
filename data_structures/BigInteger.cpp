@@ -12,6 +12,14 @@ ostream& operator<<(ostream& oss, const BigInteger& rhs) {
   return oss;
 }
 
+istream& operator>>(istream& iss, BigInteger& rhs) {
+  string s;
+  if(!(iss >> s))
+    return iss;
+  rhs = BigInteger(s);
+  return iss;
+}
+
 void RemoveLeadingZeros(vector<int>& digits) {
   bool removed = false;
   for(int i = digits.size() - 1; i >= 0; i--) {

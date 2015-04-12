@@ -35,5 +35,6 @@ struct BigInteger {
 };
 
 ostream& operator<<(ostream& oss, const BigInteger& rhs);
+istream& operator>>(istream& iss, BigInteger& rhs);
 
 #endif

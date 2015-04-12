@@ -452,3 +452,22 @@ TEST(BigIntegerMod, Negative) {
   BigInteger mod(negmodnum);
   EXPECT_EQ(mod, one % two);
 }
+
+TEST(BigIntegerIO, Positive) {
+  stringstream iss(posnum1.c_str());
+  BigInteger a;
+  iss >> a;
+  stringstream oss;
+  oss << a;
+  EXPECT_EQ(posnum1, oss.str());
+}
+
+TEST(BigIntegerIO, Negative) {
+  stringstream iss(negnum1.c_str());
+  BigInteger a;
+  iss >> a;
+  stringstream oss;
+  oss << a;
+  EXPECT_EQ(negnum1, oss.str());
+}
+
