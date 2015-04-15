@@ -17,6 +17,7 @@
   - Polygons
 - Graph
   - Topological Sort
+  - Eulerian path/cycle
 - String Processing
   - Minimum Representation
   - KMP

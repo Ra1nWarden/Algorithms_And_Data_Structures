@@ -75,3 +75,43 @@ TEST(Toposort, CycleDetection2) {
   test.adjMat[5][2] = true;
   EXPECT_FALSE(test.toposort());
 }
+
+TEST(Euler, DirectedEulerPositive) {
+  Euler test(5);
+  test.adjList[1].push_back(2);
+  test.adjList[2].push_back(3);
+  test.adjList[3].push_back(4);
+  test.adjList[4].push_back(5);
+  test.adjList[5].push_back(2);
+  EXPECT_TRUE(test.isEulerDirected());
+}
+
+TEST(Euler, DirectedEulerNegative) {
+  Euler test(5);
+  test.adjList[1].push_back(2);
+  test.adjList[2].push_back(3);
+  test.adjList[3].push_back(4);
+  test.adjList[3].push_back(5);
+  test.adjList[4].push_back(5);
+  test.adjList[5].push_back(2);
+  EXPECT_FALSE(test.isEulerDirected());
+}
+
+TEST(Euler, UndirectedEulerPositive) {
+  Euler test(5);
+  test.adjMat[1][2] = test.adjMat[2][1] = true;
+  test.adjMat[2][3] = test.adjMat[3][2] = true;
+  test.adjMat[3][4] = test.adjMat[4][3] = true;
+  test.adjMat[2][4] = test.adjMat[4][2] = true;
+  test.adjMat[2][5] = test.adjMat[5][2] = true;
+  EXPECT_TRUE(test.isEulerUndirected());
+}
+
+TEST(Euler, UndirectedEulerNegative) {
+  Euler test(5);
+  test.adjMat[1][2] = test.adjMat[2][1] = true;
+  test.adjMat[2][3] = test.adjMat[3][2] = true;
+  test.adjMat[3][4] = test.adjMat[4][3] = true;
+  test.adjMat[2][4] = test.adjMat[4][2] = true;
+  EXPECT_FALSE(test.isEulerUndirected());
+}
