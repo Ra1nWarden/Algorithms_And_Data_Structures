@@ -15,6 +15,8 @@
   - Triangles
   - Spheres
   - Polygons
+- Graph
+  - Topological Sort
 - String Processing
   - Minimum Representation
   - KMP

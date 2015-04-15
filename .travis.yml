@@ -5,3 +5,4 @@ script:
 - cd ../string_processing && make test
 - cd ../data_structures && make test
 - cd ../computational_geometry && make test
+- cd ../graph && make test
