@@ -70,8 +70,8 @@ Point normal(Point A) {
 }
 
 int turn(Point p, Point q, Point r) {
-  int res = (q - p) ^ (r - q);
-  if(res == 0)
+  double res = (q - p) ^ (r - q);
+  if(fabs(res) < EPS)
     return 0;
   else
     return res < 0 ? -1 : 1;
