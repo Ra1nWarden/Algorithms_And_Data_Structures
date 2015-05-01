@@ -33,3 +33,4 @@
 - Trie
 - Aho Corasick Automata
 - Monotonic Queue
+- Hash Table
