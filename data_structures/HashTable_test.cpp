@@ -25,6 +25,16 @@ TEST(HashTableInteger, HashSetTestPositive) {
   ASSERT_TRUE(ht.lookup(intKey2, v));
 }
 
+TEST(HashTableInteger, HashSetTestPositiveCollision) {
+  HashTable ht;
+  ht.insertKey(0);
+  int v;
+  ASSERT_TRUE(ht.lookup(0, v));
+  ht.insertKey(1000003);
+  ASSERT_TRUE(ht.lookup(0, v));
+  ASSERT_TRUE(ht.lookup(1000003, v));
+}
+
 TEST(HashTableInteger, HashSetTestNegative) {
   HashTable ht;
   ht.insertKey(intKey3);
@@ -47,6 +57,19 @@ TEST(HashTableInteger, HashMapTestPositive) {
   ASSERT_EQ(100, v);
   ht.insertKeyValue(intKey2, 233);
   ASSERT_TRUE(ht.lookup(intKey2, v));
+  ASSERT_EQ(233, v);
+}
+
+TEST(HashTableInteger, HashMapTestPositiveCollision) {
+  HashTable ht;
+  ht.insertKeyValue(0, 100);
+  int v;
+  ASSERT_TRUE(ht.lookup(0, v));
+  ASSERT_EQ(100, v);
+  ht.insertKeyValue(1000003, 233);
+  ASSERT_TRUE(ht.lookup(0, v));
+  ASSERT_EQ(100, v);
+  ASSERT_TRUE(ht.lookup(1000003, v));
   ASSERT_EQ(233, v);
 }
 
