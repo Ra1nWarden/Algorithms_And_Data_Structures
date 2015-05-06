@@ -25,6 +25,26 @@ TEST(GeneratePrime, Twenty) {
   }
 }
 
+TEST(GeneratePrimeEulerSieve, Two) {
+  vector<int> primes = GeneratePrimeEulerSieve(2);
+  EXPECT_TRUE(primes.empty());
+}
+
+TEST(GeneratePrimeEulerSieve, Three) {
+  vector<int> primes = GeneratePrimeEulerSieve(3);
+  EXPECT_EQ(1, primes.size());
+  EXPECT_EQ(2, primes[0]);
+}
+
+TEST(GeneratePrimeEulerSieve, Twenty) {
+  vector<int> primes = GeneratePrimeEulerSieve(20);
+  int expected[] = {2, 3, 5, 7, 11, 13, 17, 19};
+  EXPECT_EQ(8, primes.size());
+  for(int i = 0; i < primes.size(); i++) {
+    EXPECT_EQ(expected[i], primes[i]);
+  }
+}
+
 TEST(PrimeFactorize, One) {
   map<int, int> facts = PrimeFactorize(1);
   EXPECT_EQ(1, facts[1]);

@@ -6,8 +6,10 @@
 
 using namespace std;
 
-// Generates all prime numbers less than x (exclusive)
+// Generates all prime numbers less than x (exclusive). Runs in O(x log log x)
 vector<int> GeneratePrime(int x);
+// Generates all prime numbers using Euler's linear sieve. Runs in O(x)
+vector<int> GeneratePrimeEulerSieve(int x);
 
 // Generates prime factorization of x in a map
 // key is the prime factor and the value is the corresponding power

@@ -19,6 +19,25 @@ vector<int> GeneratePrime(int upper) {
   return result;
 }
 
+// Use global check array and another array with index to store primes.
+vector<int> GeneratePrimeEulerSieve(int x) {
+  bool check[x];
+  memset(check, false, sizeof check);
+  vector<int> result;
+  for(int i = 2; i <= x; i++) {
+    if(!check[i])
+      result.push_back(i);
+    for(int j = 0; j < result.size(); j++) {
+      if(i * result[j] > x)
+	break;
+      check[i * result[j]] = true;
+      if(i % result[j] == 0)
+	break;
+    }
+  }
+  return result;
+} 
+
 map<int, int> PrimeFactorize(int number) {
   vector<int> primes = GeneratePrime((int) sqrt(number) + 2);
   map<int, int> result;
