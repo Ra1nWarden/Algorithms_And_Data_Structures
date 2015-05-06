@@ -21,7 +21,7 @@ vector<int> GeneratePrime(int upper) {
 
 // Use global check array and another array with index to store primes.
 vector<int> GeneratePrimeEulerSieve(int x) {
-  bool check[x];
+  bool check[x+1];
   memset(check, false, sizeof check);
   vector<int> result;
   for(int i = 2; i <= x; i++) {
