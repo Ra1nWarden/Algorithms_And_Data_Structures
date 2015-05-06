@@ -12,14 +12,14 @@ TEST(GeneratePrime, Two) {
 
 TEST(GeneratePrime, Three) {
   vector<int> primes = GeneratePrime(3);
-  EXPECT_EQ(1, primes.size());
+  ASSERT_EQ(1, primes.size());
   EXPECT_EQ(2, primes[0]);
 }
 
 TEST(GeneratePrime, Twenty) {
   vector<int> primes = GeneratePrime(20);
   int expected[] = {2, 3, 5, 7, 11, 13, 17, 19};
-  EXPECT_EQ(8, primes.size());
+  ASSERT_EQ(8, primes.size());
   for(int i = 0; i < primes.size(); i++) {
     EXPECT_EQ(expected[i], primes[i]);
   }
@@ -27,19 +27,21 @@ TEST(GeneratePrime, Twenty) {
 
 TEST(GeneratePrimeEulerSieve, Two) {
   vector<int> primes = GeneratePrimeEulerSieve(2);
-  EXPECT_TRUE(primes.empty());
+  ASSERT_EQ(1, primes.size());
+  EXPECT_EQ(2, primes[0]);
 }
 
 TEST(GeneratePrimeEulerSieve, Three) {
   vector<int> primes = GeneratePrimeEulerSieve(3);
-  EXPECT_EQ(1, primes.size());
+  ASSERT_EQ(2, primes.size());
   EXPECT_EQ(2, primes[0]);
+  EXPECT_EQ(3, primes[1]);
 }
 
 TEST(GeneratePrimeEulerSieve, Twenty) {
   vector<int> primes = GeneratePrimeEulerSieve(20);
   int expected[] = {2, 3, 5, 7, 11, 13, 17, 19};
-  EXPECT_EQ(8, primes.size());
+  ASSERT_EQ(8, primes.size());
   for(int i = 0; i < primes.size(); i++) {
     EXPECT_EQ(expected[i], primes[i]);
   }
