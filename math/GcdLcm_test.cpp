@@ -79,3 +79,21 @@ TEST(SolveDiophantine, ZeroTwo) {
   EXPECT_EQ(0, sol.first * 1 + sol.second * 2);
 }
 
+TEST(GreatestCommonDivisorAlternative, TestOne) {
+  int d, x, y;
+  int a = 4;
+  int b = 6;
+  GreatestCommonDivisor(a, b, d, x, y);
+  EXPECT_EQ(2, d);
+  EXPECT_EQ(d, a * x + b * y);
+}
+
+TEST(GreatestCommonDivisorAlternative, TestTwo) {
+  int d, x, y;
+  int a = 3;
+  int b = 5;
+  GreatestCommonDivisor(a, b, d, x, y);
+  EXPECT_EQ(1, d);
+  EXPECT_EQ(d, a * x + b * y);
+}
+

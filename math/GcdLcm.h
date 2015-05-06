@@ -26,4 +26,9 @@ int LeastCommonMultiple(int a, int b);
 pair<int, int> ExtendedEuclid(int a, int b);
 pair<int, int> SolveDiophantine(int a, int b, int c);
 
+// OR the following function that does both
+// d is the gcd of a and b
+// x and y are solutions to ax + by = gcd(a, b) = d
+void GreatestCommonDivisor(int a, int b, int& d, int& x, int& y);
+
 #endif

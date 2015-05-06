@@ -3,7 +3,7 @@ GTEST_DIR = ../gtest-1.7.0/
 CPPFLAGS += -isystem $(GTEST_DIR)/include
 CXXFLAGS += -g -Wall -Wextra -pthread
 
-TESTS = Primes_test GcdLcm_test PermutationAndCombination_test Miscellaneous_test
+TESTS = Primes_test GcdLcm_test PermutationAndCombination_test Miscellaneous_test ModularArithmetic_test
 
 GTEST_HEADERS = $(GTEST_DIR)/include/gtest/*.h \
                 $(GTEST_DIR)/include/gtest/internal/*.h
@@ -56,6 +56,15 @@ PermutationAndCombination_test.o : PermutationAndCombination.cpp PermutationAndC
 PermutationAndCombination_test : PermutationAndCombination.o PermutationAndCombination_test.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
 
+ModularArithmetic.o : ModularArithmetic.cpp
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $^
+
+ModularArithmetic_test.o : ModularArithmetic_test.cpp
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $^
+
+ModularArithmetic_test : ModularArithmetic.o ModularArithmetic_test.o GcdLcm.o gtest_main.a
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
+
 Miscellaneous.o : Miscellaneous.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $^
 
@@ -66,4 +75,4 @@ Miscellaneous_test : Miscellaneous.o Miscellaneous_test.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
 
 test : $(TESTS)
-	./Primes_test && ./GcdLcm_test && ./PermutationAndCombination_test && ./Miscellaneous_test
+	./Primes_test && ./GcdLcm_test && ./PermutationAndCombination_test && ./ModularArithmetic_test && ./Miscellaneous_test

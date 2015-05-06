@@ -10,6 +10,7 @@
   - Catalan Numbers
   - Derangement
   - Floyd cycle finding
+  - Modular Arithmetic / Equations
 - Computational Geometry
   - Points and Lines
   - Triangles

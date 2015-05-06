@@ -23,3 +23,14 @@ pair<int, int> SolveDiophantine(int a, int b, int c) {
   int result = sol.first * a + sol.second * b;
   return make_pair(sol.first * c / result, sol.second * c / result);
 }
+
+void GreatestCommonDivisor(int a, int b, int& d, int& x, int& y) {
+  if(!b) {
+    d = a;
+    x = 1;
+    y = 0;
+  } else {
+    GreatestCommonDivisor(b, a % b, d, y, x);
+    y -= x * (a / b);
+  }
+}
