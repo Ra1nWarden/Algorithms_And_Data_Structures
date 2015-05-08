@@ -49,7 +49,7 @@ TEST(GeneratePrimeEulerSieve, Twenty) {
 
 TEST(PrimeFactorize, One) {
   map<int, int> facts = PrimeFactorize(1);
-  EXPECT_EQ(1, facts[1]);
+  EXPECT_TRUE(facts.empty());
 }
 
 TEST(PrimeFactorize, Two) {

@@ -15,6 +15,7 @@ vector<int> GeneratePrimeEulerSieve(int x);
 // key is the prime factor and the value is the corresponding power
 // e.g. 10 -> <2, 1>, <5, 1>
 // e.g. 8 -> <2, 3>
+// WARNING: when x == 1, this function returns an empty map
 map<int, int> PrimeFactorize(int x);
 
 // Count the number of numbers that are coprime with x

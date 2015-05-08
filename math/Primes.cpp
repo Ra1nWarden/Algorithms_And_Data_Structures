@@ -39,27 +39,19 @@ vector<int> GeneratePrimeEulerSieve(int x) {
 } 
 
 map<int, int> PrimeFactorize(int number) {
-  vector<int> primes = GeneratePrime((int) sqrt(number) + 2);
   map<int, int> result;
-  int numbercopy = number;
-  for(int i = 0; i < primes.size(); i++) {
-    int nextPrime = primes[i];
-    if(numbercopy % nextPrime == 0) {
-      int count = 0;
-      while(numbercopy % nextPrime == 0) {
-	count++;
-	numbercopy /= nextPrime;
+  for(int i = 2; i <= sqrt(number+0.5); i++) {
+    if(number % i == 0) {
+      int cnt = 0;
+      while(number % i == 0) {
+	number /= i;
+	cnt++;
       }
-      result[nextPrime] = count;
+      result[i] = cnt;
     }
   }
-  if(numbercopy != 1) {
-    result[numbercopy] = 1;
-  }
-  // special case for 1
-  if(number == 1) {
-    result[1] = 1;
-  }
+  if(number > 1)
+    result[number] = 1;
   return result;
 }
 
