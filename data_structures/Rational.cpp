@@ -52,14 +52,14 @@ bool Rational::operator!=(const Rational& rhs) const {
 Rational Rational::operator+(const Rational& rhs) const {
   Rational res;
   res.denom = LeastCommonMultiple(denom, rhs.denom);
-  res.num = num * res.denom / denom + rhs.num * res.denom / rhs.denom;
+  res.num = num * (res.denom / denom) + rhs.num * (res.denom / rhs.denom);
   return res;
 }
 
 Rational Rational::operator-(const Rational& rhs) const {
   Rational res;
   res.denom = LeastCommonMultiple(denom, rhs.denom);
-  res.num = num * res.denom / denom - rhs.num * res.denom / rhs.denom;
+  res.num = num * (res.denom / denom) - rhs.num * (res.denom / rhs.denom);
   return res;
 }
 
