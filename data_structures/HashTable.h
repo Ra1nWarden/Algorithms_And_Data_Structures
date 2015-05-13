@@ -34,4 +34,6 @@ struct HashTable {
   HashTable();
 };
 
+int hashAllLower(char* str);
+
 #endif

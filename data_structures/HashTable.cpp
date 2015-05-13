@@ -113,3 +113,12 @@ bool HashTable::lookup(char* str, int& v) {
   }
   return false;
 }
+
+int hashAllLower(char* str) {
+  int len = strlen(str);
+  int res = 0;
+  for(int i = 0; i < len; i++) {
+    res = res * 27 + str[i] - 'a' + 1; // +1 is necessary to differentiate a and aa
+  }
+  return res;
+}
