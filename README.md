@@ -20,6 +20,7 @@
 - Graph
   - Topological Sort
   - Eulerian path/cycle
+  - Transitive Closure
   - Minimum Spanning Tree: Kruskal's
   - Shortest Path Algorithms: Dijkstra's / Bellman-Ford's / SPFA / Floyd-Warshall's
 - String Processing

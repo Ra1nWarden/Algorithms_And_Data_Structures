@@ -41,4 +41,15 @@ struct Euler {
   Euler(int nodes);
 };
 
+struct TransitiveClosure {
+  int n; // Number of vertices
+  bool d[MAXN][MAXN]; // 2D result array
+  // Initialization
+  void init(int n);
+  // Add an edge
+  void addEdge(int from, int to);
+  // Run transitive closure (similar to Floyd Warshall's APSP)
+  void transitiveClosure();
+};
+
 #endif

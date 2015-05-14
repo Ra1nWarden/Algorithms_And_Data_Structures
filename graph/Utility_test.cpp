@@ -115,3 +115,27 @@ TEST(Euler, UndirectedEulerNegative) {
   test.adjMat[2][4] = test.adjMat[4][2] = true;
   EXPECT_FALSE(test.isEulerUndirected());
 }
+
+TEST(TransitiveClosure, PositiveTest) {
+  TransitiveClosure test;
+  test.init(5);
+  test.addEdge(1, 0);
+  test.addEdge(0, 3);
+  test.addEdge(3, 2);
+  test.transitiveClosure();
+  EXPECT_TRUE(test.d[1][2]);
+  EXPECT_TRUE(test.d[0][2]);
+}
+
+TEST(TransitiveClosure, NegativeTest) {
+  TransitiveClosure test;
+  test.init(5);
+  test.addEdge(1, 0);
+  test.addEdge(0, 3);
+  test.addEdge(3, 2);
+  test.addEdge(4, 2);
+  test.transitiveClosure();
+  EXPECT_FALSE(test.d[4][0]);
+  EXPECT_FALSE(test.d[3][4]);
+  EXPECT_FALSE(test.d[0][1]);
+}

@@ -159,3 +159,26 @@ bool Euler::isEulerUndirected() {
   }
   return oddcount == 0 || oddcount == 2;
 }
+
+void TransitiveClosure::init(int n) {
+  this->n = n;
+  for(int i = 0; i < n; i++) {
+    for(int j = 0; j < n; j++) {
+      d[i][j] = i == j;
+    }
+  }
+}
+
+void TransitiveClosure::addEdge(int from, int to) {
+  d[from][to] = true;
+}
+
+void TransitiveClosure::transitiveClosure() {
+  for(int k = 0; k < n; k++) {
+    for(int i = 0; i < n; i++) {
+      for(int j = 0; j < n; j++) {
+        d[i][j] = d[i][j] || (d[i][k] && d[k][j]);
+      }
+    }
+  }
+}
