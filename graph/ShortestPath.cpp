@@ -2,7 +2,6 @@
 #include <queue>
 #include <cstring>
 #include <algorithm>
-#define INF 2000000000
 
 Edge::Edge(int u, int v, int d) : from(u), to(v), dist(d) {}
 
@@ -188,4 +187,25 @@ bool SPFA::spfa(int s, int t, int& dist,vector<int>& path) {
   reverse(path.begin(), path.end());
   dist = d[t];
   return true;
+}
+
+void FloydWarshall::init(int n) {
+  for(int i = 0; i < n; i++)
+    for(int j = 0; j < n; j++)
+          d[i][j] = i == j ? 0 : INF;
+  this->n = n;
+}
+
+void FloydWarshall::addEdge(int from, int to, int dist) {
+  d[from][to] = min(d[from][to], dist);
+}
+
+void FloydWarshall::floydWarshall() {
+  for(int k = 0; k < n; k++)
+    for(int i = 0; i < n; i++)
+      for(int j = 0; j < n; j++) {
+        if(d[i][k] < INF && d[k][j] < INF)
+          d[i][j] = min(d[i][j], d[i][k] + d[k][j]);
+      }
+
 }

@@ -254,3 +254,73 @@ TEST(SPFA, PathTest2) {
   for(int i = 0; i < 4; i++)
     EXPECT_EQ(expected[i], path[i]);
 }
+
+TEST(FloydWarshall, PositiveDirectedEdgeTest) {
+  FloydWarshall sol;
+  sol.init(5);
+  sol.addEdge(0, 1, 10);
+  sol.addEdge(0, 2, 20);
+  sol.addEdge(2, 4, 5);
+  sol.addEdge(1, 2, 5);
+  sol.addEdge(2, 3, 10);
+  sol.addEdge(3, 4, 20);
+  sol.addEdge(0, 4, 5);
+  sol.floydWarshall();
+  int expected[][5] = {{0, 10, 15, 25, 5}, {INF, 0, 5, 15, 10},
+                        {INF, INF, 0, 10, 5}, {INF, INF, INF, 0, 20},
+                        {INF, INF, INF, INF, 0}};
+  for(int i = 0; i < 5; i++) {
+    for(int j = 0; j < 5; j++) {
+      EXPECT_EQ(expected[i][j], sol.d[i][j]);
+    }
+  }
+}
+
+TEST(FloydWarshall, PositiveUndirectedEdgeTest) {
+  FloydWarshall sol;
+  sol.init(5);
+  sol.addEdge(0, 1, 10);
+  sol.addEdge(1, 0, 10);
+  sol.addEdge(0, 2, 20);
+  sol.addEdge(2, 0, 20);
+  sol.addEdge(2, 4, 5);
+  sol.addEdge(4, 2, 5);
+  sol.addEdge(1, 2, 5);
+  sol.addEdge(2, 1, 5);
+  sol.addEdge(2, 3, 10);
+  sol.addEdge(3, 2, 10);
+  sol.addEdge(3, 4, 20);
+  sol.addEdge(4, 3, 20);
+  sol.addEdge(0, 4, 5);
+  sol.addEdge(4, 0, 5);
+  sol.floydWarshall();
+  int expected[][5] = {{0, 10, 10, 20, 5}, {10, 0, 5, 15, 10},
+                        {10, 5, 0, 10, 5}, {20, 15, 10, 0, 15},
+                        {5, 10, 5, 15, 0}};
+  for(int i = 0; i < 5; i++) {
+    for(int j = 0; j < 5; j++) {
+      EXPECT_EQ(expected[i][j], sol.d[i][j]);
+    }
+  }
+}
+
+TEST(FloydWarshall, NegativeTest) {
+  FloydWarshall sol;
+  sol.init(5);
+  sol.addEdge(0, 1, 20);
+  sol.addEdge(0, 2, 20);
+  sol.addEdge(2, 4, 5);
+  sol.addEdge(1, 2, -5);
+  sol.addEdge(2, 3, 10);
+  sol.addEdge(3, 4, 20);
+  sol.addEdge(0, 4, -5);
+  sol.floydWarshall();
+  int expected[][5] = {{0, 20, 15, 25, -5}, {INF, 0, -5, 5, 0},
+                        {INF, INF, 0, 10, 5}, {INF, INF, INF, 0, 20},
+                        {INF, INF, INF, INF, 0}};
+  for(int i = 0; i < 5; i++) {
+    for(int j = 0; j < 5; j++) {
+      EXPECT_EQ(expected[i][j], sol.d[i][j]);
+    }
+  }
+}

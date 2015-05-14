@@ -3,7 +3,7 @@
 - Mathematics
   - Prime number generation
   - Prime factorization
-  - Euler Phi 
+  - Euler Phi
   - Solve Diophantine Equations
   - Permutation and Combinations
   - Factorial
@@ -21,7 +21,7 @@
   - Topological Sort
   - Eulerian path/cycle
   - Minimum Spanning Tree: Kruskal's
-  - Shortest Path Algorithms: Dijkstra's/BellmanFord's/SPFA
+  - Shortest Path Algorithms: Dijkstra's / Bellman-Ford's / SPFA / Floyd-Warshall's
 - String Processing
   - Minimum Representation
   - KMP

@@ -4,6 +4,7 @@
 #include <utility>
 #include <vector>
 #define MAXN 1000 // Maximum number of vertices
+#define INF 2000000000
 
 using namespace std;
 
@@ -62,6 +63,17 @@ struct SPFA {
   bool spfa(int s);
   // Run SPFA from source s to destination t and save path
   bool spfa(int s, int t, int& dist, vector<int>& path);
+};
+
+struct FloydWarshall {
+  int n; // n is the number of vertices
+  int d[MAXN][MAXN]; // Distance 2D array
+  // Initialization
+  void init(int n);
+  // Add an edge
+  void addEdge(int from, int to, int d);
+  // Run Floyd Warshall's algorithm to find APSP
+  void floydWarshall();
 };
 
 #endif
