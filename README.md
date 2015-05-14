@@ -20,6 +20,7 @@
 - Graph
   - Topological Sort
   - Eulerian path/cycle
+  - Minimum Spanning Tree: Kruskal's
 - String Processing
   - Minimum Representation
   - KMP
