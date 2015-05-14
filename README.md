@@ -21,6 +21,7 @@
   - Topological Sort
   - Eulerian path/cycle
   - Minimum Spanning Tree: Kruskal's
+  - Shortest Path Algorithms: Dijkstra's/BellmanFord's/SPFA
 - String Processing
   - Minimum Representation
   - KMP
