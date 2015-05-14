@@ -3,7 +3,7 @@ GTEST_DIR = ../gtest-1.7.0/
 CPPFLAGS += -isystem $(GTEST_DIR)/include
 CXXFLAGS += -g -Wall -Wextra -pthread
 
-TESTS = Utility_test
+TESTS = Utility_test MST_test
 
 GTEST_HEADERS = $(GTEST_DIR)/include/gtest/*.h \
                 $(GTEST_DIR)/include/gtest/internal/*.h
@@ -38,5 +38,14 @@ Utility_test.o : Utility.cpp Utility_test.cpp $(GTEST_HEADERS)
 Utility_test : Utility.o Utility_test.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
 
+MST.o : MST.cpp
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c MST.cpp
+
+MST_test.o : MST.cpp MST_test.cpp $(GTEST_HEADERS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c MST_test.cpp
+
+MST_test : MST.o MST_test.o gtest_main.a
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
+
 test : $(TESTS)
-	./Utility_test
+	./Utility_test && ./MST_test

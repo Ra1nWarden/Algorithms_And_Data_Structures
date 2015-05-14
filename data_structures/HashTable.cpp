@@ -120,5 +120,5 @@ int hashAllLower(char* str) {
   for(int i = 0; i < len; i++) {
     res = res * 27 + str[i] - 'a' + 1; // +1 is necessary to differentiate a and aa
   }
-  return res;
+  return res; // MOD table size before return
 }
