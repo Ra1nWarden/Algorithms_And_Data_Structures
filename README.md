@@ -23,6 +23,7 @@
   - Transitive Closure
   - Minimum Spanning Tree: Kruskal's
   - Shortest Path Algorithms: Dijkstra's / Bellman-Ford's / SPFA / Floyd-Warshall's
+  - Maximum Flow Algorithms: Edmonds Karp's
 - String Processing
   - Minimum Representation
   - KMP

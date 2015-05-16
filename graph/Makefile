@@ -3,7 +3,7 @@ GTEST_DIR = ../gtest-1.7.0/
 CPPFLAGS += -isystem $(GTEST_DIR)/include
 CXXFLAGS += -g -Wall -Wextra -pthread
 
-TESTS = Utility_test MST_test ShortestPath_test
+TESTS = Utility_test MST_test ShortestPath_test MaximumFlow_test
 
 GTEST_HEADERS = $(GTEST_DIR)/include/gtest/*.h \
                 $(GTEST_DIR)/include/gtest/internal/*.h
@@ -56,5 +56,14 @@ ShortestPath_test.o : ShortestPath.cpp ShortestPath_test.cpp $(GTEST_HEADERS)
 ShortestPath_test : ShortestPath.o ShortestPath_test.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
 
+MaximumFlow.o : MaximumFlow.cpp
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c MaximumFlow.cpp
+
+MaximumFlow_test.o : MaximumFlow.cpp MaximumFlow_test.cpp $(GTEST_HEADERS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c MaximumFlow_test.cpp
+
+MaximumFlow_test : MaximumFlow.o MaximumFlow_test.o gtest_main.a
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
+
 test : $(TESTS)
-	./Utility_test && ./MST_test && ./ShortestPath_test
+	./Utility_test && ./MST_test && ./ShortestPath_test && ./MaximumFlow_test
