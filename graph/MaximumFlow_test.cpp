@@ -26,3 +26,28 @@ TEST(EdmondsKarp, Test2) {
   test.addEdge(2, 3, 25);
   EXPECT_EQ(25, test.maxFlow(0, 3));
 }
+
+TEST(MinimumCostMaximumFlow, Test1) {
+  MinimumCostMaximumFlow test;
+  test.init(4);
+  test.addEdge(0, 1, 2, 2);
+  test.addEdge(0, 2, 1, 5);
+  test.addEdge(1, 2, 1, 2);
+  test.addEdge(1, 3, 1, 3);
+  test.addEdge(2, 3, 1, 1);
+  long long cost;
+  EXPECT_EQ(2, test.minimumCostMaximumFlow(0, 3, cost));
+  EXPECT_EQ(10, cost);
+}
+
+TEST(MinimumCostMaximumFlow, Test2) {
+  MinimumCostMaximumFlow test;
+  test.init(4);
+  test.addEdge(0, 1, 20, 10);
+  test.addEdge(0, 2, 10, 100);
+  test.addEdge(1, 3, 50, 5);
+  test.addEdge(2, 3, 5, 100);
+  long long cost;
+  EXPECT_EQ(25, test.minimumCostMaximumFlow(0, 3, cost));
+  EXPECT_EQ(1300, cost);
+}
