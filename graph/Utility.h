@@ -52,4 +52,13 @@ struct TransitiveClosure {
   void transitiveClosure();
 };
 
+struct Bipartite {
+  int n; // Number of vertices
+  vector<int> graph[MAXN]; // Adjacency List
+  int color[MAXN]; // 0: not colored 1: black 2: white
+  void addEdge(int u, int v); // utility function for testing purpose
+  bool isBipartite(int u); // Returns whether the component with u is bipartite
+  Bipartite(int n);
+};
+
 #endif

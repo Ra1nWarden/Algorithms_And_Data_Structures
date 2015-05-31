@@ -139,3 +139,29 @@ TEST(TransitiveClosure, NegativeTest) {
   EXPECT_FALSE(test.d[3][4]);
   EXPECT_FALSE(test.d[0][1]);
 }
+
+TEST(BipartiteTest, PositiveTestSingleComponent) {
+  Bipartite test(4);
+  test.addEdge(0, 1);
+  test.addEdge(1, 2);
+  test.addEdge(2, 3);
+  EXPECT_TRUE(test.isBipartite(2));
+}
+
+TEST(BipartiteTest, PositiveTestMultipleComponent) {
+  Bipartite test(6);
+  test.addEdge(0, 1);
+  test.addEdge(1, 2);
+  test.addEdge(3, 4);
+  test.addEdge(4, 5);
+  EXPECT_TRUE(test.isBipartite(1));
+  EXPECT_TRUE(test.isBipartite(4));
+}
+
+TEST(BipartiteTest, NegativeTest) {
+  Bipartite test(3);
+  test.addEdge(0, 1);
+  test.addEdge(1, 2);
+  test.addEdge(0, 2);
+  EXPECT_FALSE(test.isBipartite(1));
+}

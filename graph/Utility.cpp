@@ -182,3 +182,33 @@ void TransitiveClosure::transitiveClosure() {
     }
   }
 }
+
+Bipartite::Bipartite(int n) {
+  this->n = n;
+  for(int i = 0; i < n; i++)
+    graph[i].clear();
+  memset(color, 0, sizeof color);
+}
+
+void Bipartite::addEdge(int u, int v) {
+  graph[u].push_back(v);
+  graph[v].push_back(u);
+}
+
+bool Bipartite::isBipartite(int u) {
+  if(!color[u])
+    color[u] = 1;
+  for(int i = 0; i < graph[u].size(); i++) {
+    int v = graph[u][i];
+    if(color[v] == color[u]) {
+      return false;
+    }
+    if(!color[v]) {
+      color[v] = 3 - color[u];
+      if(!isBipartite(v)) {
+	return false;
+      }
+    }
+  }
+  return true;
+}
