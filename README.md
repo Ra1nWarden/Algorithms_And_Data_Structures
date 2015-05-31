@@ -23,6 +23,7 @@
   - Transitive Closure
   - Bipartite graph test
   - Articulation point and bridge
+  - Tarjan's Algorithm for strongly connected component
   - Minimum Spanning Tree: Kruskal's
   - Shortest Path Algorithms: Dijkstra's / Bellman-Ford's / SPFA / Floyd-Warshall's
   - Maximum Flow Algorithms: Edmonds Karp's / Minimum Cost Maximum Flow

@@ -3,6 +3,7 @@
 
 #include <map>
 #include <vector>
+#include <stack>
 
 // Maxmimum number of nodes.
 // If this is too large, try to rewrite dfs() with stack
@@ -80,6 +81,17 @@ struct ArticulationPointAndBridge {
   int dfs(int u, int fa); // Run dfs with u and fa as the parent node
   bool isCutPoint(int u);
   bool isCutBridge(int v);
+};
+
+struct Tarjan {
+  vector<int> graph[MAXN]; // Adjacency list that saves nodes number
+  int n, dfs_clock, scc_cnt;
+  int pre[MAXN], lowlink[MAXN], sccno[MAXN];
+  stack<int> s;
+  Tarjan(int n);
+  void addEdge(int u, int v); // Directed: from u to v
+  void dfs(int u);
+  void tarjan();
 };
 
 #endif

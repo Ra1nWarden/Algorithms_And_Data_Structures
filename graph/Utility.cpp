@@ -275,3 +275,47 @@ bool ArticulationPointAndBridge::isCutBridge(int v) {
     dfs(edge.from, -1);
   return cutBridge[v];
 }
+
+Tarjan::Tarjan(int n) {
+  this->n = n;
+  for(int i = 0; i < n; i++)
+    graph[i].clear();
+  dfs_clock = scc_cnt = 0;
+  memset(sccno, 0, sizeof sccno);
+  memset(pre, 0, sizeof pre);
+}
+
+void Tarjan::addEdge(int u, int v) {
+  graph[u].push_back(v);
+}
+
+void Tarjan::dfs(int u) {
+  pre[u] = lowlink[u] = ++dfs_clock;
+  s.push(u);
+  for(int i = 0; i < graph[u].size(); i++) {
+    int v = graph[u][i];
+    if(!pre[v]) {
+      dfs(v);
+      lowlink[u] = min(lowlink[u], lowlink[v]);
+    } else if(!sccno[v]) {
+      lowlink[u] = min(lowlink[u], pre[v]);
+    }
+  }
+  if(lowlink[u] == pre[u]) {
+    scc_cnt++;
+    while(true) {
+      int x = s.top();
+      s.pop();
+      sccno[x] = scc_cnt;
+      if(x == u)
+	break;
+    }
+  }
+}
+
+void Tarjan::tarjan() {
+  for(int i = 0; i < n; i++) {
+    if(!pre[i])
+      dfs(i);
+  }
+}

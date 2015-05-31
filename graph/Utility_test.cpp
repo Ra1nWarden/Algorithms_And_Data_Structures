@@ -245,3 +245,41 @@ TEST(ArticulationPointAndBridge, TestFive) {
       EXPECT_FALSE(test.isCutBridge(i));
   }
 }
+
+TEST(Tarjan, SingleSCC) {
+  Tarjan test(5);
+  test.addEdge(0, 1);
+  test.addEdge(1, 2);
+  test.addEdge(2, 3);
+  test.addEdge(3, 4);
+  test.addEdge(4, 0);
+  test.tarjan();
+  EXPECT_EQ(1, test.scc_cnt);
+}
+
+TEST(Tarjan, NoSCC) {
+  Tarjan test(5);
+  test.addEdge(0, 1);
+  test.addEdge(1, 2);
+  test.addEdge(2, 3);
+  test.addEdge(3, 4);
+  test.tarjan();
+  EXPECT_EQ(5, test.scc_cnt);
+}
+
+TEST(Tarjan, TwoSCC) {
+  Tarjan test(5);
+  test.addEdge(0, 1);
+  test.addEdge(1, 2);
+  test.addEdge(2, 0);
+  test.addEdge(3, 4);
+  test.addEdge(4, 3);
+  test.tarjan();
+  EXPECT_EQ(2, test.scc_cnt);
+  for(int i = 0; i < 5; i++) {
+    if(i < 3)
+      EXPECT_EQ(1, test.sccno[i]);
+    else
+      EXPECT_EQ(2, test.sccno[i]);
+  }
+}
