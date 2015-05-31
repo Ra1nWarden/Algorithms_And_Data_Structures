@@ -212,3 +212,66 @@ bool Bipartite::isBipartite(int u) {
   }
   return true;
 }
+
+Edge::Edge(int u, int v) {
+  from = u;
+  to = v;
+}
+
+ArticulationPointAndBridge::ArticulationPointAndBridge(int n) {
+  this->n = n;
+  edges.clear();
+  for(int i = 0; i < n; i++)
+    graph[i].clear();
+  memset(pre, 0, sizeof pre);
+  memset(low, 0, sizeof low);
+  memset(cutPoint, false, sizeof cutPoint);
+  memset(cutBridge, false, sizeof cutBridge);
+  dfs_clock = 0;
+}
+
+void ArticulationPointAndBridge::addEdge(int from, int to) {
+  edges.push_back(Edge(from, to));
+  edges.push_back(Edge(to, from));
+  graph[from].push_back(edges.size() - 2);
+  graph[to].push_back(edges.size() - 1);
+}
+
+int ArticulationPointAndBridge::dfs(int u, int fa) {
+  int lowu = pre[u] = ++dfs_clock;
+  int child = 0;
+  for(int i = 0; i < graph[u].size(); i++) {
+    Edge& e= edges[graph[u][i]];
+    int v = e.to;
+    if(!pre[v]) {
+      child++;
+      int lowv = dfs(v, u);
+      lowu = min(lowu, lowv);
+      if(lowv >= pre[u]) {
+	cutPoint[u] = true;
+	if(lowv > pre[u])
+	  cutBridge[graph[u][i]] = cutBridge[graph[u][i]^1] = true;
+      }
+    } else if(pre[v] < pre[u] && v != fa) {
+      lowu = min(lowu, pre[v]);
+    }
+  }
+  if(fa < 0 && child == 1)
+    cutPoint[u] = false;
+  low[u] = lowu;
+  return lowu;
+}
+
+
+bool ArticulationPointAndBridge::isCutPoint(int u) {
+  if(!pre[u])
+    dfs(u, -1);
+  return cutPoint[u];
+}
+
+bool ArticulationPointAndBridge::isCutBridge(int v) {
+  Edge& edge = edges[v];
+  if(!pre[edge.from])
+    dfs(edge.from, -1);
+  return cutBridge[v];
+}

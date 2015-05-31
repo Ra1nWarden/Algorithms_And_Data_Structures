@@ -165,3 +165,83 @@ TEST(BipartiteTest, NegativeTest) {
   test.addEdge(0, 2);
   EXPECT_FALSE(test.isBipartite(1));
 }
+
+TEST(ArticulationPointAndBridge, TestOne) {
+  ArticulationPointAndBridge test(5);
+  test.addEdge(0, 1);
+  test.addEdge(1, 2);
+  test.addEdge(2, 3);
+  test.addEdge(3, 4);
+  EXPECT_FALSE(test.isCutPoint(0));
+  EXPECT_FALSE(test.isCutPoint(4));
+  for(int i = 1; i < 4; i++)
+    EXPECT_TRUE(test.isCutPoint(i));
+  for(int i = 0; i < test.edges.size(); i++)
+    EXPECT_TRUE(test.isCutBridge(i));
+}
+
+TEST(ArticulationPointAndBridge, TestTwo) {
+  ArticulationPointAndBridge test(5);
+  test.addEdge(0, 1);
+  test.addEdge(1, 2);
+  test.addEdge(2, 3);
+  test.addEdge(3, 4);
+  test.addEdge(4, 0);
+  for(int i = 0; i < 5; i++) {
+    EXPECT_FALSE(test.isCutPoint(i));
+  }
+  for(int i = 0; i < test.edges.size(); i++) {
+    EXPECT_FALSE(test.isCutBridge(i));
+  }
+}
+
+TEST(ArticulationPointAndBridge, TestThree) {
+  ArticulationPointAndBridge test(5);
+  test.addEdge(0, 1);
+  test.addEdge(1, 2);
+  test.addEdge(2, 3);
+  test.addEdge(3, 0);
+  test.addEdge(0, 4);
+  EXPECT_TRUE(test.isCutPoint(0));
+  for(int i = 1; i < 5; i++) {
+    EXPECT_FALSE(test.isCutPoint(i));
+  }
+  for(int i = 0; i < test.edges.size() - 2; i++) {
+    EXPECT_FALSE(test.isCutBridge(i));
+  }
+  EXPECT_TRUE(test.isCutBridge(9));
+  EXPECT_TRUE(test.isCutBridge(8));
+}
+
+TEST(ArticulationPointAndBridge, TestFour) {
+  ArticulationPointAndBridge test(4);
+  test.addEdge(0, 1);
+  test.addEdge(0, 2);
+  test.addEdge(0, 3);
+  EXPECT_TRUE(test.isCutPoint(0));
+  for(int i = 1; i < 4; i++)
+    EXPECT_FALSE(test.isCutPoint(i));
+  for(int i = 0; i < test.edges.size(); i++)
+    EXPECT_TRUE(test.isCutBridge(i));
+}
+
+TEST(ArticulationPointAndBridge, TestFive) {
+  ArticulationPointAndBridge test(5);
+  test.addEdge(0, 1);
+  test.addEdge(1, 2);
+  test.addEdge(2, 3);
+  test.addEdge(3, 4);
+  test.addEdge(4, 2);
+  for(int i = 0; i < 5; i++) {
+    if(i == 1 || i == 2)
+      EXPECT_TRUE(test.isCutPoint(i));
+    else
+      EXPECT_FALSE(test.isCutPoint(i));
+  }
+  for(int i = 0; i < test.edges.size(); i++) {
+    if(i < 4)
+      EXPECT_TRUE(test.isCutBridge(i));
+    else
+      EXPECT_FALSE(test.isCutBridge(i));
+  }
+}

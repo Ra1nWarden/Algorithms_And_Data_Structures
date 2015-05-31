@@ -7,6 +7,7 @@
 // Maxmimum number of nodes.
 // If this is too large, try to rewrite dfs() with stack
 #define MAXN 100
+#define MAXE 1000 // Maximum number of edges
 
 // dfs symbols
 #define DFS_WHITE 0
@@ -59,6 +60,26 @@ struct Bipartite {
   void addEdge(int u, int v); // utility function for testing purpose
   bool isBipartite(int u); // Returns whether the component with u is bipartite
   Bipartite(int n);
+};
+
+struct Edge {
+  int from, to;
+  Edge(int u, int v);
+};
+
+struct ArticulationPointAndBridge {
+  vector<Edge> edges; // Edges array
+  vector<int> graph[MAXN]; // Ajdacency list with values indicating the indices to edges array
+  int n; // Number of nodes
+  int pre[MAXN], low[MAXN]; // Array for dfs_clock and an array for the minimum pre value for a vertex and its children
+  int dfs_clock; // A clock for counting dfs sequence
+  bool cutPoint[MAXN];
+  bool cutBridge[MAXE];
+  void addEdge(int from, int to);
+  ArticulationPointAndBridge(int n);
+  int dfs(int u, int fa); // Run dfs with u and fa as the parent node
+  bool isCutPoint(int u);
+  bool isCutBridge(int v);
 };
 
 #endif
