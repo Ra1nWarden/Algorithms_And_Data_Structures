@@ -7,4 +7,7 @@ int PowerModular(int a, int n, int m);
 // Solve equation ax \equiv b (mod n)
 bool SolveModularEquation(int a, int b, int n, int& x);
 
+// Calculates a choose b modular m where m is PRIME
+int ChooseModularPrime(int a, int b, int p);
+
 #endif

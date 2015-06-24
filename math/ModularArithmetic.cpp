@@ -25,3 +25,16 @@ bool SolveModularEquation(int a, int b, int n, int& x) {
     return true;
   }
 }
+
+int ChooseModularPrime(int a, int b, int p) {
+  int num = 1;
+  int denom = 1;
+  for(int i = 1; i <= b; i++) {
+    denom *= i;
+    denom %= p;
+    num *= (a-i+1);
+    num %= p;
+  }
+  // This uses Little Fermat's Theorem so denom and p must be coprime.
+  return num * PowerModular(denom, p-2, p) % p;
+}

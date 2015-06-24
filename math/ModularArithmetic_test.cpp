@@ -73,3 +73,10 @@ TEST(SolveModularEquation, NegativeTestTwo) {
   int x;
   ASSERT_FALSE(SolveModularEquation(a, b, n, x));
 }
+
+TEST(ChooseModularPrime, TestSet) {
+  EXPECT_EQ(6, ChooseModularPrime(6, 3, 7));
+  EXPECT_EQ(9, ChooseModularPrime(7, 4, 13));
+  EXPECT_EQ(1, ChooseModularPrime(7, 3, 17));
+  EXPECT_EQ(0, ChooseModularPrime(5, 2, 5));
+}
