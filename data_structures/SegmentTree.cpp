@@ -1,5 +1,6 @@
 #include "SegmentTree.h"
 #include <algorithm>
+#include <cstring>
 #define LEFT(x) (x<<1)
 #define RIGHT(x) (x<<1)|1
 #define MID(x, y) ((x+y)>>1)
@@ -21,6 +22,7 @@ void SegmentTree::build(int i, int l, int r) {
     return;
   build(LEFT(i), l, MID(l, r));
   build(RIGHT(i), MID(l, r)+1, r);
+  memset(addv, 0, sizeof addv);
 }
 
 void SegmentTree::update(int i, int k, int val) {
@@ -56,4 +58,36 @@ int SegmentTree::query(int i, int l, int r) {
   else
     // Depending on data maintained in the tree, call min/max/add, etc
     return min(query(LEFT(i), l, mid), query(RIGHT(i), mid+1, r));
+}
+
+void SegmentTree::add_range(int i, int l, int r, int val) {
+  if(l == segTree[i].l && r == segTree[i].r) {
+    addv[i] += val;
+    segTree[i].v += val;
+  } else {
+    int mid = MID(segTree[i].l, segTree[i].r);
+    if(r <= mid)
+      add_range(LEFT(i), l, r, val);
+    else if(l > mid)
+      add_range(RIGHT(i), l, r, val);
+    else {
+      add_range(LEFT(i), l, mid, val);
+      add_range(RIGHT(i), mid+1, r, val);
+    }
+    segTree[i].v = min(segTree[LEFT(i)].v, segTree[RIGHT(i)].v);
+    // If a sum is needed, do addv[i] * (segTree[i].r - segTree[i].l + 1);
+    segTree[i].v += addv[i];
+  }
+}
+
+int SegmentTree::query(int i, int l, int r, int add) {
+  if(l == segTree[i].l && r == segTree[i].r)
+    return segTree[i].v + add;
+  int mid = MID(segTree[i].l, segTree[i].r);
+  if(r <= mid)
+    return query(LEFT(i), l, r, addv[i]+add);
+  else if(l > mid)
+    return query(RIGHT(i), l, r, addv[i]+add);
+  else
+    return min(query(LEFT(i), l, mid, addv[i]+add), query(RIGHT(i), mid+1, r, addv[i]+add));
 }

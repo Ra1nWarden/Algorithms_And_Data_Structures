@@ -39,3 +39,31 @@ TEST(SegmentTree, UpdateQuery) {
   seg.update(1, 4, -3);
   EXPECT_EQ(-3, seg.query(1, 0, 6));
 }
+
+TEST(SegmentTree, RangeUpdateQueryOne) {
+  setupTree();
+  seg.add_range(1, 0, 2, 3);
+  EXPECT_EQ(2, seg.query(1, 0, 2, 0));
+  seg.add_range(1, 2, 4, -1);
+  EXPECT_EQ(-1, seg.query(1, 1, 4, 0));
+  seg.add_range(1, 4, 6, -3);
+  EXPECT_EQ(-5, seg.query(1, 0, 6, 0));
+}
+
+TEST(SegmentTree, RangeUpdateQueryTwo) {
+  setupTree();
+  seg.add_range(1, 0, 2, -3);
+  EXPECT_EQ(-4, seg.query(1, 0, 2, 0));
+  seg.add_range(1, 2, 4, 1);
+  EXPECT_EQ(-1, seg.query(1, 1, 4, 0));
+  seg.add_range(1, 4, 6, 1);
+  EXPECT_EQ(-4, seg.query(1, 0, 6, 0));
+}
+
+TEST(SegmentTree, RangeUpdateQueryThree) {
+  setupTree();
+  seg.add_range(1, 0, 0, -1);
+  seg.add_range(1, 1, 3, -2);
+  seg.add_range(1, 0, 2, 1);
+  EXPECT_EQ(-2, seg.query(1, 0, 3, 0));
+}
