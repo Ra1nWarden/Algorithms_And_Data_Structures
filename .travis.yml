@@ -6,3 +6,4 @@ script:
 - cd ../data_structures && make test
 - cd ../computational_geometry && make test
 - cd ../graph && make test
+- cd ../dynamic_programming && make test

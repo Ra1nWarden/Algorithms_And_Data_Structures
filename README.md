@@ -30,6 +30,8 @@
 - String Processing
   - Minimum Representation
   - KMP
+- Dynamic Programming
+  - Knapsack
 
 # Data Structures
 - BigInteger
