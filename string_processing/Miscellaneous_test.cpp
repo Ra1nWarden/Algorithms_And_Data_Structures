@@ -22,3 +22,11 @@ TEST(MinimumRepresentation, SomeRepeated) {
   string str = "aabaaaa";
   EXPECT_EQ(3, MinimumRepresentation(str));
 }
+
+TEST(Hash, ABCABC) {
+  Hash test("ABCABC");
+  EXPECT_EQ(test.hashSubstring(0, 3), test.hashSubstring(3, 3));
+  EXPECT_EQ(test.hashSubstring(0, 2), test.hashSubstring(3, 2));
+  EXPECT_FALSE(test.hashSubstring(0, 1) == test.hashSubstring(0, 2));
+  EXPECT_FALSE(test.hashSubstring(0, 2) == test.hashSubstring(2, 2));
+}
