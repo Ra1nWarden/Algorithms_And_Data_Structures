@@ -30,6 +30,7 @@
 - String Processing
   - Minimum Representation
   - KMP
+  - LCP using hash
 - Dynamic Programming
   - Knapsack
 
