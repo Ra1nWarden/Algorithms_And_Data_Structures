@@ -9,7 +9,7 @@ UnionFindSet::UnionFindSet(int n) {
 }
 
 int UnionFindSet::FindSet(int a) {
-  return p[a] == a ? a : FindSet(p[a]);
+  return p[a] == a ? a : p[a] = FindSet(p[a]);
 }
 
 void UnionFindSet::UnionSet(int a, int b) {
