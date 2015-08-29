@@ -1,5 +1,6 @@
 #include "Miscellaneous.h"
 #include <cstdlib>
+#include <cstring>
 
 using namespace std;
 
