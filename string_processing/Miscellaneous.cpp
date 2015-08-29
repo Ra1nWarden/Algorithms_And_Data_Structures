@@ -43,7 +43,7 @@ Manacher::Manacher(string word) : word(word) {
     ch[i+i+2] = i == len ? '\0' : word[i];
     ch[i+i+1] = '#';
   }
-  ch[0] = '$';
+  ch[0] = '$'; // ch[0] and ch[2*len+2] must be different character and this prevents out-of-bound error.
   memset(p, 0, sizeof p);
 }
 
