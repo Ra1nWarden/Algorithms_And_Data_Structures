@@ -1,4 +1,5 @@
 language: cpp
+sudo: false
 
 script:
 - cd math && make test
