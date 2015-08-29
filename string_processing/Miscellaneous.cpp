@@ -34,3 +34,30 @@ Hash::Hash(string str) {
 unsigned long long Hash::hashSubstring(int i, int l) {
   return h[i] - h[i+l] * xp[l];
 }
+
+Manacher::Manacher(string word) : word(word) {
+  len = word.length();
+  id = 0;
+  maxlen = 0;
+  for(int i = len; i >= 0; i--) {
+    ch[i+i+2] = i == len ? '\0' : word[i];
+    ch[i+i+1] = '#';
+  }
+  ch[0] = '$';
+  memset(p, 0, sizeof p);
+}
+
+int Manacher::solve() {
+  for(int i = 2; i < 2 * len + 1; i++) {
+    if(p[id] + id > i)
+      p[i] = min(p[2 * id - i], p[id] + id - i);
+    else
+      p[i] = 1;
+    while(ch[i - p[i]] == ch[i + p[i]])
+      p[i]++;
+    if(p[id] + id < i + p[i])
+      id = i;
+    maxlen = max(maxlen, p[i]);
+  }
+  return maxlen - 1;
+}

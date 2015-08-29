@@ -31,6 +31,7 @@
   - Minimum Representation
   - KMP
   - LCP using hash
+  - Manacher's Algorithm
 - Dynamic Programming
   - Knapsack
 

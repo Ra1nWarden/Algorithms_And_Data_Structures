@@ -30,3 +30,18 @@ TEST(Hash, ABCABC) {
   EXPECT_FALSE(test.hashSubstring(0, 1) == test.hashSubstring(0, 2));
   EXPECT_FALSE(test.hashSubstring(0, 2) == test.hashSubstring(2, 2));
 }
+
+TEST(Manacher, Test1) {
+  Manacher sol("abababababa");
+  EXPECT_EQ(11, sol.solve());
+}
+
+TEST(Manacher, Test2) {
+  Manacher sol("abcbadedabc");
+  EXPECT_EQ(9, sol.solve());
+}
+
+TEST(Manacher, Test3) {
+  Manacher sol("abcdefghijklmnopqrst");
+  EXPECT_EQ(1, sol.solve());
+}

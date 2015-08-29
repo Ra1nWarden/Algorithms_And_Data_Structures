@@ -20,4 +20,14 @@ struct Hash {
   unsigned long long hashSubstring(int i, int l);
 };
 
+// Manacher algorithm that finds the longest palindrome
+struct Manacher {
+  int id, len, maxlen;
+  string word;
+  char ch[MAXN];
+  int p[MAXN];
+  Manacher(string word);
+  int solve();
+};
+
 #endif
