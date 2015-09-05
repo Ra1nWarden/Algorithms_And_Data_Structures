@@ -47,3 +47,4 @@
 - Aho Corasick Automata
 - Monotonic Queue
 - Hash Table
+- Hash Heap
