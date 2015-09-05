@@ -48,3 +48,4 @@
 - Monotonic Queue
 - Hash Table
 - Hash Heap
+- Expression Tree

@@ -3,7 +3,7 @@ GTEST_DIR = ../gtest-1.7.0/
 CPPFLAGS += -isystem $(GTEST_DIR)/include
 CXXFLAGS += -g -Wall -Wextra -pthread
 
-TESTS = UnionFindSet_test BigInteger_test BinaryIndexTree_test RMQ_test SegmentTree_test Rational_test MonotonicQueue_test HashTable_test HashHeap_test
+TESTS = UnionFindSet_test BigInteger_test BinaryIndexTree_test RMQ_test SegmentTree_test Rational_test MonotonicQueue_test HashTable_test HashHeap_test ExpressionTree_test
 
 GTEST_HEADERS = $(GTEST_DIR)/include/gtest/*.h \
                 $(GTEST_DIR)/include/gtest/internal/*.h
@@ -110,5 +110,14 @@ HashHeap_test.o : HashHeap_test.cpp
 HashHeap_test : HashHeap.o HashHeap_test.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
 
+ExpressionTree.o : ExpressionTree.cpp
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $^
+
+ExpressionTree_test.o : ExpressionTree_test.cpp
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $^
+
+ExpressionTree_test : ExpressionTree.o ExpressionTree_test.o gtest_main.a
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
+
 test : $(TESTS)
-	./UnionFindSet_test && ./BigInteger_test && ./BinaryIndexTree_test && ./RMQ_test && ./SegmentTree_test && ./Rational_test && ./MonotonicQueue_test && ./HashTable_test && ./HashHeap_test
+	./UnionFindSet_test && ./BigInteger_test && ./BinaryIndexTree_test && ./RMQ_test && ./SegmentTree_test && ./Rational_test && ./MonotonicQueue_test && ./HashTable_test && ./HashHeap_test && ./ExpressionTree_test
