@@ -2,14 +2,14 @@
 #include "BigInteger.h"
 
 static const string posnum1 = "2326675176257368192873981264861287357126868767846376487364343676";
-static const string posnum2 = "123628767832674892876382756687783628532576325765";
+static const string posnum2 = "000123628767832674892876382756687783628532576325765";
 static const string posnum3 = "2326675176257368192873981264861287357126868767846376487364343677";
 static const string negnum1 = "-" + posnum1;
 static const string negnum2 = "-" + posnum2;
 static const string negnum3 = "-2326675176257368192873981264861287357126868767846376487364343675";
 
 // posnum1 + posnum2
-static const string possum1 = "2326675176257368316502749097536180233509625455630005019940669441";
+static const string possum1 = "0002326675176257368316502749097536180233509625455630005019940669441";
 // posnum1 + negnum2 = posnum1 - posnum2
 static const string possum2 = "2326675176257368069245213432186394480744112080062747954788017911";
 static const string negsum1 = "-" + possum1;
@@ -20,7 +20,7 @@ static const string posprod = "2876439851875701074982715192469460986432828290541
 static const string negprod = "-" + posprod;
 
 // posnum1 / posnum2
-static const string posdiv = "18819852507196399";
+static const string posdiv = "00018819852507196399";
 static const string negdiv = "-" + posdiv;
 
 // posnum % posnum2

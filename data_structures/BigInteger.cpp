@@ -48,6 +48,7 @@ BigInteger::BigInteger(string num) {
   for(int i = 0; i < num.length(); i++) {
     digits[num.length() - i - 1] = atoi(num.substr(i, 1).c_str());
   }
+  RemoveLeadingZeros(digits);
 }
 
 BigInteger::BigInteger(long long num) {
