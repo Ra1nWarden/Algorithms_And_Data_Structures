@@ -24,4 +24,52 @@ struct Kruskal {
   int kruskal();
 };
 
+// Manhattan Minimum Spanning Tree related.
+#define MAXN 1000
+
+struct Point {
+  int x, y, id;
+  bool operator<(const Point& rhs) const;
+  Point();
+};
+
+struct Node {
+  int min_val, pos;
+  void init();
+};
+
+struct BIT {
+  Node bit[MAXN];
+  void init();
+  int lowbit(int x);
+  void update(int i, int val, int pos);
+  int query(int i, int m);
+};
+
+struct Edge {
+  int u, v, d;
+  bool operator<(const Edge& edge) const;
+};
+
+struct UnionFindSet {
+  int fa[MAXN];
+  int findSet(int x);
+  void init(int n);
+  void unionSet(int x, int y);
+};
+
+struct ManhattanMST {
+  BIT binary_indexed_tree;
+  Edge edge[MAXN<<2];
+  int total;
+  UnionFindSet union_find_set;
+  Point points[MAXN];
+  int n;
+  ManhattanMST();
+  void addPoint(int x, int y);
+  int dist(const Point& a, const Point& b);
+  int manhattanMST();
+  void addEdge(int u, int v, int d);
+};
+
 #endif

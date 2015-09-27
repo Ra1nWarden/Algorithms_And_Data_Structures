@@ -39,3 +39,33 @@ TEST(Kruskal, Test3) {
   memcpy(sol.v, tails, sizeof tails);
   EXPECT_EQ(4, sol.kruskal());
 }
+
+TEST(ManhattanMST, Test1) {
+  ManhattanMST test;
+  test.addPoint(0, 0);
+  test.addPoint(0, 1);
+  test.addPoint(1, 0);
+  test.addPoint(1, 1);
+  EXPECT_EQ(3, test.manhattanMST());
+}
+
+TEST(ManhattanMST, Test2) {
+  ManhattanMST test;
+  test.addPoint(0, 0);
+  test.addPoint(10, 0);
+  test.addPoint(11, 1);
+  test.addPoint(12, 2);
+  EXPECT_EQ(14, test.manhattanMST());
+}
+
+TEST(ManhattanMST, Test3) {
+  ManhattanMST test;
+  test.addPoint(0, 0);
+  test.addPoint(1, 1);
+  test.addPoint(-1, 1);
+  test.addPoint(-1, -1);
+  test.addPoint(1, -1);
+  EXPECT_EQ(8, test.manhattanMST());
+}
+
+
