@@ -13,7 +13,8 @@ struct BigInteger {
   BigInteger();
   BigInteger(string num);
   BigInteger(long long num);
-  BigInteger operator=(const BigInteger& rhs);
+  BigInteger(const BigInteger& cpy);
+  BigInteger& operator=(const BigInteger& rhs);
   
   bool operator<(const BigInteger& rhs) const;
   bool operator>(const BigInteger& rhs) const;
@@ -32,11 +33,11 @@ struct BigInteger {
   BigInteger operator*(const BigInteger& rhs) const;
   BigInteger operator/(const BigInteger& rhs) const;
   BigInteger operator%(const BigInteger& rhs) const;
-  BigInteger operator+=(const BigInteger& rhs);
-  BigInteger operator-=(const BigInteger& rhs);
-  BigInteger operator*=(const BigInteger& rhs);
-  BigInteger operator/=(const BigInteger& rhs);
-  BigInteger operator%=(const BigInteger& rhs);
+  BigInteger& operator+=(const BigInteger& rhs);
+  BigInteger& operator-=(const BigInteger& rhs);
+  BigInteger& operator*=(const BigInteger& rhs);
+  BigInteger& operator/=(const BigInteger& rhs);
+  BigInteger& operator%=(const BigInteger& rhs);
 };
 
 ostream& operator<<(ostream& oss, const BigInteger& rhs);

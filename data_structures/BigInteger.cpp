@@ -59,7 +59,12 @@ BigInteger::BigInteger(long long num) {
   digits = dummy.digits;
 }
 
-BigInteger BigInteger::operator=(const BigInteger& rhs) {
+BigInteger::BigInteger(const BigInteger& cpy) {
+  digits = cpy.digits;
+  positive = cpy.positive;
+}
+
+BigInteger& BigInteger::operator=(const BigInteger& rhs) {
   positive = rhs.positive;
   digits = rhs.digits;
   return *this;
@@ -307,27 +312,27 @@ BigInteger BigInteger::operator%(const BigInteger& rhs) const {
   return *this - div * rhs;
 }
 
-BigInteger BigInteger::operator+=(const BigInteger& rhs) {
+BigInteger& BigInteger::operator+=(const BigInteger& rhs) {
   *this = *this + rhs;
   return *this;
 }
 
-BigInteger BigInteger::operator-=(const BigInteger& rhs) {
+BigInteger& BigInteger::operator-=(const BigInteger& rhs) {
   *this = *this - rhs;
   return *this;
 }
 
-BigInteger BigInteger::operator*=(const BigInteger& rhs) {
+BigInteger& BigInteger::operator*=(const BigInteger& rhs) {
   *this = *this * rhs;
   return *this;
 }
 
-BigInteger BigInteger::operator/=(const BigInteger& rhs) {
+BigInteger& BigInteger::operator/=(const BigInteger& rhs) {
   *this = *this / rhs;
   return *this;
 }
 
-BigInteger BigInteger::operator%=(const BigInteger& rhs) {
+BigInteger& BigInteger::operator%=(const BigInteger& rhs) {
   *this = *this % rhs;
   return *this;
 }

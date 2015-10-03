@@ -82,6 +82,18 @@ TEST(BigIntegerConstructor, LongLongConstructorNegative) {
   EXPECT_EQ(one, two);
 }
 
+TEST(BigIntegerCopyAssignment, Positive) {
+  BigInteger lhs(posnum1);
+  BigInteger test = lhs;
+  ASSERT_TRUE(test == lhs);
+}
+
+TEST(BigIntegerCopyAssignment, Negative) {
+  BigInteger lhs(negnum1);
+  BigInteger test = lhs;
+  ASSERT_TRUE(test == lhs);
+}
+
 TEST(BigIntegerEqualTo, Positive) {
   BigInteger lhs(posnum1);
   BigInteger rhs(posnum1);
