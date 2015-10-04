@@ -10,4 +10,7 @@ bool SolveModularEquation(int a, int b, int n, int& x);
 // Calculates a choose b modular m where m is PRIME
 int ChooseModularPrime(int a, int b, int p);
 
+// Finds inverse of a mod n
+int ModularInverse(int a, int n);
+
 #endif

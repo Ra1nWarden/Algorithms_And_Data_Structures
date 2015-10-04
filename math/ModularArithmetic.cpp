@@ -38,3 +38,9 @@ int ChooseModularPrime(int a, int b, int p) {
   // This uses Little Fermat's Theorem so denom and p must be coprime.
   return num * PowerModular(denom, p-2, p) % p;
 }
+
+int ModularInverse(int a, int n) {
+  int d, x, y;
+  GreatestCommonDivisor(a, n, d, x, y);
+  return d == 1 ? (x + n) % n : -1;
+}
