@@ -11,6 +11,7 @@
   - Derangement
   - Floyd cycle finding
   - Modular Arithmetic / Equations
+  - Chinese Remainder Theorem
   - Euler linear sieve
 - Computational Geometry
   - Points and Lines

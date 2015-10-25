@@ -86,3 +86,19 @@ TEST(ModularInverse, Test) {
   EXPECT_EQ(4, ModularInverse(2, 7));
   EXPECT_EQ(3, ModularInverse(4, 11));
 }
+
+TEST(ChineseRemainderThm, TestOne) {
+  int mv[] = {2, 3, 5, 7, 11};
+  int av[] = {1, 1, 4, 5, 8};
+  vector<int> a(av, av + 5);
+  vector<int> m(mv, mv + 5);
+  EXPECT_EQ(19, ChineseRemainderThm(a, m));
+}
+
+TEST(ChineseRemainderThm, TestTwo) {
+  int mv[] = {2, 3, 5, 7, 11};
+  int av[] = {1, 2, 3, 2, 1};
+  vector<int> a(av, av + 5);
+  vector<int> m(mv, mv + 5);
+  EXPECT_EQ(23, ChineseRemainderThm(a, m));
+}

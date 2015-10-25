@@ -44,3 +44,15 @@ int ModularInverse(int a, int n) {
   GreatestCommonDivisor(a, n, d, x, y);
   return d == 1 ? (x + n) % n : -1;
 }
+
+int ChineseRemainderThm(vector<int> a, vector<int> m) {
+  int M = 1, d, y, x = 0;
+  for(int i = 0; i < m.size(); i++)
+    M *= m[i];
+  for(int i = 0; i < m.size(); i++) {
+    int w = M / m[i];
+    GreatestCommonDivisor(m[i], w, d, d, y);
+    x = (x + y * w * a[i]) % M;
+  }
+  return (x + M) % M;
+}

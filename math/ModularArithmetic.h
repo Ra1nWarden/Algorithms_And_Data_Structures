@@ -1,6 +1,10 @@
 #ifndef ALGORITHM_MODULAR_H_
 #define ALGORITHM_MODULAR_H_
 
+#include <vector>
+
+using namespace std;
+
 // Calculates a^n \equiv m
 int PowerModular(int a, int n, int m);
 
@@ -12,5 +16,10 @@ int ChooseModularPrime(int a, int b, int p);
 
 // Finds inverse of a mod n
 int ModularInverse(int a, int n);
+
+// Chinese Remainder Theorem
+// x \equiv a_i \mod m_i
+// NOTE: use long long to avoid overflow if necessary
+int ChineseRemainderThm(vector<int> a, vector<int> m);
 
 #endif
