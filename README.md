@@ -12,6 +12,7 @@
   - Floyd cycle finding
   - Modular Arithmetic / Equations
   - Chinese Remainder Theorem
+  - Baby Step Giant Step
   - Euler linear sieve
 - Computational Geometry
   - Points and Lines

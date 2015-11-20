@@ -22,4 +22,9 @@ int ModularInverse(int a, int n);
 // NOTE: use long long to avoid overflow if necessary
 int ChineseRemainderThm(vector<int> a, vector<int> m);
 
+// Modular logarithm
+// Find x for a^{x} \equiv b \mod n where n is prime
+// Baby Step Giant Step algorithm
+int BabyStepGiantStep(int a, int b, int n);
+
 #endif

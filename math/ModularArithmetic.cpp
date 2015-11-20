@@ -1,6 +1,8 @@
 #include "ModularArithmetic.h"
 #include "GcdLcm.h"
 #include <iostream>
+#include <map>
+#include <cmath>
 
 int PowerModular(int a, int n, int m) {
   int ans = 1;
@@ -57,4 +59,24 @@ int ChineseRemainderThm(vector<int> a, vector<int> m) {
     x = (x + y * w * a[i]) % M;
   }
   return (x + M) % M;
+}
+
+int BabyStepGiantStep(int a, int b, int n) {
+  map<int, int> memo; // This might lead to TLE, use a hash table instead
+  if(b == 1) {
+    return 0;
+  }
+  int m = sqrt(n + 0.5), j;
+  long long x = 1, p = 1;
+  for(int i = 0; i < m; i++, p = p * a % n) {
+    if(memo.count(p * b % n) == 0) {
+      memo[p * b % n] = i;
+    }
+  }
+  for(long long i = m; i <= n; i += m) {
+    if(memo.count(x = x * p % n)) {
+      return i - memo[x];
+    }
+  }
+  return -1;
 }

@@ -102,3 +102,17 @@ TEST(ChineseRemainderThm, TestTwo) {
   vector<int> m(mv, mv + 5);
   EXPECT_EQ(23, ChineseRemainderThm(a, m));
 }
+
+TEST(BabyStepGiantStep, PositiveTests) {
+  EXPECT_EQ(0, BabyStepGiantStep(2, 1, 5));
+  EXPECT_EQ(1, BabyStepGiantStep(2, 2, 5));
+  EXPECT_EQ(3, BabyStepGiantStep(2, 3, 5));
+  EXPECT_EQ(2, BabyStepGiantStep(2, 4, 5));
+  EXPECT_EQ(462803587, BabyStepGiantStep(65537, 1111111111, 1111111121));
+}
+
+TEST(BabyStepGiantStep, NegativeTests) {
+  EXPECT_EQ(-1, BabyStepGiantStep(4, 2, 5));
+  EXPECT_EQ(-1, BabyStepGiantStep(4, 3, 5));
+  EXPECT_EQ(-1, BabyStepGiantStep(4, 3, 7));
+}
