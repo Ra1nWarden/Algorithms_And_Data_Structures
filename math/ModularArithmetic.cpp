@@ -69,9 +69,7 @@ int BabyStepGiantStep(int a, int b, int n) {
   int m = sqrt(n + 0.5), j;
   long long x = 1, p = 1;
   for(int i = 0; i < m; i++, p = p * a % n) {
-    if(memo.count(p * b % n) == 0) {
-      memo[p * b % n] = i;
-    }
+    memo[p * b % n] = i;
   }
   for(long long i = m; i <= n; i += m) {
     if(memo.count(x = x * p % n)) {
