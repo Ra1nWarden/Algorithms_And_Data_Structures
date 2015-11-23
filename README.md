@@ -14,6 +14,7 @@
   - Chinese Remainder Theorem
   - Baby Step Giant Step
   - Euler linear sieve
+  - Gauss Elimination
 - Computational Geometry
   - Points and Lines
   - Triangles
