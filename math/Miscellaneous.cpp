@@ -25,33 +25,32 @@ pair<int, int> FloydCycleFinding(int (*f)(int), int x0) {
 }
 
 bool GaussElimination::Gauss() {
-  int i, j, k, col, max_r;
-  for(k = 0, col = 0; k < equ && col < var; k++, col++) {
-    max_r = k;
-    for(i = k+1; i < equ; i++) {
-      if(fabs(matrix[i][col]) > fabs(matrix[max_r][col]))
-	max_r = i;
+  int i, j, k, r;
+  for(i = 0; i < n; i++) {
+    r = i;
+    for(j = i + 1; j < n; j++) {
+      if(fabs(matrix[j][i]) > fabs(matrix[r][i]))
+	r = j;
     }
-    if(fabs(matrix[max_r][col]) < eps)
+    if(fabs(matrix[r][i]) < eps) {
       return false;
-    if(k != max_r) {
-      for(j = col; j < var; j++) {
-	swap(matrix[k][j], matrix[max_r][j]);
-      }
-      swap(x[k], x[max_r]);
     }
-    x[k] /= matrix[k][col];
-    for(j = col+1; j < var; j++)
-      matrix[k][j] /= matrix[k][col];
-    matrix[k][col] = 1;
-    for(i = 0; i < equ; i++) {
-      if(i != k) {
-	x[i] -= x[k] * matrix[i][k];
-	for(j = col+1; j < var; j++)
-	  matrix[i][j] -= matrix[k][j] * matrix[i][col];
-	matrix[i][col] = 0;
-      }
+    if(r != i) {
+      for(j = 0; j < n; j++)
+	swap(matrix[r][j], matrix[i][j]);
+      swap(x[r], x[i]); // This line can be combined with the previous loop (j <= n) if x is included in matrix
     }
+    // This loop can be combined with the next one (j = n) if x is included in the matrix as the last column
+    for(k = i + 1; k < n; k++)
+      x[k] -= matrix[k][i] / matrix[i][i] * x[i];
+    for(j = n - 1; j >= i; j--)
+      for(k = i + 1; k < n; k++)
+	matrix[k][j] -= matrix[k][i] / matrix[i][i] * matrix[i][j];
+  }
+  for(i = n - 1; i >= 0; i--) {
+    for(j = i + 1; j < n; j++)
+      x[i] -= x[j] * matrix[i][j];
+    x[i] /= matrix[i][i];
   }
   return true;
 }

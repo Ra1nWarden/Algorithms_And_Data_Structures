@@ -21,7 +21,7 @@ const double eps = 1e-9;
 struct GaussElimination {
   // matrix is the matrix for coefficients and x saves the constants on the RHS
   double matrix[maxn][maxn], x[maxn];
-  int equ, var; // Number of equations and number of variables.
+  int n; // n variables with n equations
   bool Gauss(); // Returns whether there is solution. x saves the answer
 };
 

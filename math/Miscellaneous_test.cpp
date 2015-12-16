@@ -45,8 +45,7 @@ TEST(GaussElimination, PositiveTestOne) {
   double rhs[2] = {5, 16};
   for(int i = 0; i < 2; i++)
     sol.x[i] = rhs[i];
-  sol.equ = 2;
-  sol.var = 2;
+  sol.n = 2;
   EXPECT_TRUE(sol.Gauss());
   EXPECT_TRUE(fabs(sol.x[0] - 2) < eps);
   EXPECT_TRUE(fabs(sol.x[1] - 3) < eps);
@@ -61,8 +60,7 @@ TEST(GaussElimination, PositiveTestTwo) {
   double rhs[3] = {9, 28, 30};
   for(int i = 0; i < 3; i++)
     sol.x[i] = rhs[i];
-  sol.equ = 3;
-  sol.var = 3;
+  sol.n = 3;
   EXPECT_TRUE(sol.Gauss());
   EXPECT_TRUE(fabs(sol.x[0] - 2) < eps);
   EXPECT_TRUE(fabs(sol.x[1] - 3) < eps);
@@ -78,8 +76,7 @@ TEST(GaussElimination, PositiveTestThree) {
   double rhs[3] = {9, 26, 24};
   for(int i = 0; i < 3; i++)
     sol.x[i] = rhs[i];
-  sol.equ = 3;
-  sol.var = 3;
+  sol.n = 3;
   EXPECT_TRUE(sol.Gauss());
   EXPECT_TRUE(fabs(sol.x[0] - 4) < eps);
   EXPECT_TRUE(fabs(sol.x[1] - 3) < eps);
@@ -95,8 +92,7 @@ TEST(GaussElimination, NegativeTestOne) {
   double rhs[2] = {4, 8};
   for(int i = 0; i < 2; i++)
     sol.x[i] = rhs[i];
-  sol.equ = 2;
-  sol.var = 2;
+  sol.n = 2;
   EXPECT_FALSE(sol.Gauss());
 }
 
@@ -109,8 +105,7 @@ TEST(GaussElimination, NegativeTestTwo) {
   double rhs[2] = {4, 0};
   for(int i = 0; i < 2; i++)
     sol.x[i] = rhs[i];
-  sol.equ = 2;
-  sol.var = 2;
+  sol.n = 2;
   EXPECT_FALSE(sol.Gauss());
 }
 
@@ -123,8 +118,7 @@ TEST(GaussElimination, NegativeTestThree) {
   double rhs[3] = {1, 3, 4};
   for(int i = 0; i < 3; i++)
     sol.x[i] = rhs[i];
-  sol.equ = 3;
-  sol.var = 3;
+  sol.n = 3;
   EXPECT_FALSE(sol.Gauss());
 }
 
