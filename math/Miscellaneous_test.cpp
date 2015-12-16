@@ -122,4 +122,33 @@ TEST(GaussElimination, NegativeTestThree) {
   EXPECT_FALSE(sol.Gauss());
 }
 
+TEST(GaussElimination, GaussJordanPositiveOne) {
+  GaussElimination sol;
+  double mat[2][2] = {{1, 1}, {2, 4}};;
+  for(int i = 0; i < 2; i++)
+    for(int j = 0; j < 2; j++)
+      sol.matrix[i][j] = mat[i][j];
+  double rhs[2] = {5, 16};
+  for(int i = 0; i < 2; i++)
+    sol.x[i] = rhs[i];
+  sol.n = 2;
+  sol.GaussJordan();
+  EXPECT_TRUE(fabs(sol.x[0] / sol.matrix[0][0] - 2) < eps);
+  EXPECT_TRUE(fabs(sol.x[1] / sol.matrix[1][1] - 3) < eps);
+}
 
+TEST(GaussElimination, GaussJordanPositiveTwo) {
+  GaussElimination sol;
+  double mat[3][3] = {{1, 1, 1}, {2, 4, 3}, {2, 2, 5}};
+  for(int i = 0; i < 3; i++)
+    for(int j = 0; j < 3; j++)
+      sol.matrix[i][j] = mat[i][j];
+  double rhs[3] = {9, 28, 30};
+  for(int i = 0; i < 3; i++)
+    sol.x[i] = rhs[i];
+  sol.n = 3;
+  sol.GaussJordan();
+  EXPECT_TRUE(fabs(sol.x[0] / sol.matrix[0][0] - 2) < eps);
+  EXPECT_TRUE(fabs(sol.x[1] / sol.matrix[1][1] - 3) < eps);
+  EXPECT_TRUE(fabs(sol.x[2] / sol.matrix[2][2] - 4) < eps);
+}

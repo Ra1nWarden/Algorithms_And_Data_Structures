@@ -23,6 +23,7 @@ struct GaussElimination {
   double matrix[maxn][maxn], x[maxn];
   int n; // n variables with n equations
   bool Gauss(); // Returns whether there is solution. x saves the answer
+  void GaussJordan(); // No return value, for each row, there is only one non-zero value.
 };
 
 #endif

@@ -54,3 +54,30 @@ bool GaussElimination::Gauss() {
   }
   return true;
 }
+
+void GaussElimination::GaussJordan() {
+  int i, j, k, r;
+  for(i = 0; i < n; i++) {
+    r = i;
+    for(j = i + 1; j < n; j++) {
+      if(fabs(matrix[j][i]) > fabs(matrix[r][i])) {
+	r = j;
+      }
+    }
+    if(fabs(matrix[r][i]) < eps)
+      continue;
+    if(r != i) {
+      for(j = 0; j < n; j++)
+	swap(matrix[r][j], matrix[i][j]);
+      swap(x[r], x[i]); // This line can be combined with the previous loop (j <= n), if x is the last column of matrix.
+    }
+    for(k = 0; k < n; k++) {
+      if(k != i) {
+	x[k] -= matrix[k][i] / matrix[i][i] * x[i]; // This line can be combined with the next loop (j = n), if x is the last column of matrix.
+	for(j = n - 1; j >=i; j--) {
+	  matrix[k][j] -= matrix[k][i] / matrix[i][i] * matrix[i][j];
+	}
+      }
+    }
+  }
+}
