@@ -15,6 +15,7 @@
   - Baby Step Giant Step
   - Euler linear sieve
   - Gauss Elimination
+  - Adaptive Simpson's Rule for integration
 - Computational Geometry
   - Points and Lines
   - Triangles

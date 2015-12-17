@@ -26,4 +26,14 @@ struct GaussElimination {
   void GaussJordan(); // No return value, for each row, there is only one non-zero value.
 };
 
+// Adaptive Simpson's Rule
+// f(x) is a global function to be integrated.
+struct SimpsonIntegral {
+  double f(double x);
+  double simpson(double a, double b);
+  double asr(double a, double b, double eps, double A);
+  // Main method, integrate f(x) from a to b with error eps.
+  double asr(double a, double b, double eps);
+};
+
 #endif

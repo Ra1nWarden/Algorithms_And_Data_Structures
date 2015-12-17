@@ -152,3 +152,21 @@ TEST(GaussElimination, GaussJordanPositiveTwo) {
   EXPECT_TRUE(fabs(sol.x[1] / sol.matrix[1][1] - 3) < eps);
   EXPECT_TRUE(fabs(sol.x[2] / sol.matrix[2][2] - 4) < eps);
 }
+
+TEST(SimpsonIntegral, TestOne) {
+  SimpsonIntegral sol;
+  double eps = 1e-6;
+  EXPECT_TRUE(fabs(sol.asr(0, 1, eps) - (1.0 / 3)) < eps);
+}
+
+TEST(SimpsonIntegral, TestTwo) {
+  SimpsonIntegral sol;
+  double eps = 1e-5;
+  EXPECT_TRUE(fabs(sol.asr(-1, 1, eps) - (2.0 / 3)) < eps);
+}
+
+TEST(SimpsonIntegral, TestThree) {
+  SimpsonIntegral sol;
+  double eps = 1e-4;
+  EXPECT_TRUE(fabs(sol.asr(0, 0, eps) - 0) < eps);
+}
