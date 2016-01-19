@@ -97,3 +97,44 @@ TEST(GreatestCommonDivisorAlternative, TestTwo) {
   EXPECT_EQ(d, a * x + b * y);
 }
 
+TEST(PolynomialGreatestCommonDivisor, TestOne) {
+  int av[4] = {2, 2, 1, 1};
+  vector<int> a(av, av+4);
+  int bv[5] = {1, 0, 2, 2, 2};
+  vector<int> b(bv, bv+5);
+  int mod = 3;
+  int ansv[3] = {1, 2, 1};
+  vector<int> ans = PolynomialGreatestCommonDivisor(a, b, mod);
+  ASSERT_EQ(3, ans.size());
+  for(int i = 0; i < 3; i++) {
+    EXPECT_EQ(ansv[i], ans[i]);
+  }
+}
+
+TEST(PolynomialGreatestCommonDivisor, TestTwo) {
+  int av[3] = {1, -2, 1};
+  vector<int> a(av, av+3);
+  int bv[2] = {1, -1};
+  vector<int> b(bv, bv+2);
+  int mod = 5;
+  int ansv[2] = {1, -1};
+  vector<int> ans = PolynomialGreatestCommonDivisor(a, b, mod);
+  ASSERT_EQ(2, ans.size());
+  for(int i = 0; i < 2; i++) {
+    EXPECT_EQ(ansv[i], ans[i]);
+  }
+}
+
+TEST(PolynomialGreatestCommonDivisor, TestThree) {
+  int av[3] = {1, -1, -2};
+  vector<int> a(av, av+3);
+  int bv[3] = {1, -2, 0};
+  vector<int> b(bv, bv+3);
+  int mod = 5;
+  int ansv[2] = {1, 3};
+  vector<int> ans = PolynomialGreatestCommonDivisor(a, b, mod);
+  ASSERT_EQ(2, ans.size());
+  for(int i = 0; i < 2; i++) {
+    EXPECT_EQ(ansv[i], ans[i]);
+  }
+}

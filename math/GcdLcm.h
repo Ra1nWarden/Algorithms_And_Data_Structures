@@ -2,6 +2,7 @@
 #define ALGORITHM_GCDLCM_H_
 
 #include <utility>
+#include <vector>
 
 using namespace std;
 
@@ -30,5 +31,10 @@ pair<int, int> SolveDiophantine(int a, int b, int c);
 // d is the gcd of a and b
 // x and y are solutions to ax + by = gcd(a, b) = d
 void GreatestCommonDivisor(int a, int b, int& d, int& x, int& y);
+
+// Euclid's algorithm on polynomials to find the largest power polynomial that divideds both.
+// a and b are vectors of coefficient starting from the largest power.
+// The returned vector c is in the same format as a and b.
+vector<int> PolynomialGreatestCommonDivisor(vector<int> a, vector<int> b, int mod);
 
 #endif

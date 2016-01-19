@@ -16,6 +16,7 @@
   - Euler linear sieve
   - Gauss Elimination
   - Adaptive Simpson's Rule for integration
+  - Euclid's Algorithm for Polynomials
 - Computational Geometry
   - Points and Lines
   - Triangles

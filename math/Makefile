@@ -44,7 +44,7 @@ GcdLcm.o : GcdLcm.cpp
 GcdLcm_test.o : GcdLcm_test.cpp $(GTEST_HEADERS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c GcdLcm_test.cpp
 
-GcdLcm_test : GcdLcm.o GcdLcm_test.o gtest_main.a
+GcdLcm_test : GcdLcm.o GcdLcm_test.o ModularArithmetic.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
 
 PermutationAndCombination.o : PermutationAndCombination.cpp
