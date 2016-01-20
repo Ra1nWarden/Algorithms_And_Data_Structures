@@ -89,7 +89,7 @@ Rational.o : Rational.cpp
 Rational_test.o : Rational_test.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $^
 
-Rational_test : Rational.o Rational_test.o ../math/GcdLcm.o gtest_main.a
+Rational_test : Rational.o Rational_test.o ../math/GcdLcm.o ../math/ModularArithmetic.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
 
 HashTable.o : HashTable.cpp
@@ -98,7 +98,7 @@ HashTable.o : HashTable.cpp
 HashTable_test.o : HashTable_test.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $^
 
-HashTable_test : HashTable.o HashTable_test.o ../math/GcdLcm.o gtest_main.a
+HashTable_test : HashTable.o HashTable_test.o ../math/GcdLcm.o ../math/ModularArithmetic.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
 
 HashHeap.o : HashHeap.cpp
