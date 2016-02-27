@@ -23,6 +23,7 @@ void SegmentTree::build(int i, int l, int r) {
   build(LEFT(i), l, MID(l, r));
   build(RIGHT(i), MID(l, r)+1, r);
   memset(addv, 0, sizeof addv);
+  memset(setv, -1, sizeof setv); // Assume -1 is never set to any range of nodes
 }
 
 void SegmentTree::update(int i, int k, int val) {
@@ -90,4 +91,45 @@ int SegmentTree::query(int i, int l, int r, int add) {
     return query(RIGHT(i), l, r, addv[i]+add);
   else
     return min(query(LEFT(i), l, mid, addv[i]+add), query(RIGHT(i), mid+1, r, addv[i]+add));
+}
+
+void SegmentTree::update_range(int i, int l, int r, int val) {
+  if(l == segTree[i].l && r == segTree[i].r) {
+    setv[i] = val;
+  } else {
+    // Check whether there is a set mark on the ith node (>= 0 is an assumption)
+    // If so, push down the mark
+    if(setv[i] >= 0) {
+      setv[LEFT(i)] = setv[RIGHT(i)] = setv[i];
+      setv[i] = -1; // Reset mark to -1
+    }
+    int mid = MID(segTree[i].l, segTree[i].r);
+    if(r <= mid) {
+      update_range(LEFT(i), l, r, val);
+    } else if(l > mid) {
+      update_range(RIGHT(i), l, r, val);
+    } else {
+      update_range(LEFT(i), l, mid, val);
+      update_range(RIGHT(i), mid+1, r, val);
+    }
+  }
+  int leftv = setv[LEFT(i)] >= 0 ? setv[LEFT(i)] : segTree[LEFT(i)].v;
+  int rightv = setv[RIGHT(i)] >= 0 ? setv[RIGHT(i)] : segTree[RIGHT(i)].v;
+  segTree[i].v = min(leftv, rightv);
+}
+
+int SegmentTree::update_range_query(int i, int l, int r) {
+  if(setv[i] >= 0) {
+    return setv[i];
+  }
+  if(segTree[i].l == l && segTree[i].r == r) {
+    return segTree[i].v;
+  }
+  int mid = MID(segTree[i].l, segTree[i].r);
+  if(r <= mid)
+    return update_range_query(LEFT(i), l, r);
+  else if(l > mid)
+    return update_range_query(RIGHT(i), l, r);
+  else
+    return min(update_range_query(LEFT(i), l, mid), update_range_query(RIGHT(i), mid+1, r));
 }

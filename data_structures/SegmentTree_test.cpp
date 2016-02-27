@@ -40,7 +40,7 @@ TEST(SegmentTree, UpdateQuery) {
   EXPECT_EQ(-3, seg.query(1, 0, 6));
 }
 
-TEST(SegmentTree, RangeUpdateQueryOne) {
+TEST(SegmentTree, RangeAddQueryOne) {
   setupTree();
   seg.add_range(1, 0, 2, 3);
   EXPECT_EQ(2, seg.query(1, 0, 2, 0));
@@ -50,7 +50,7 @@ TEST(SegmentTree, RangeUpdateQueryOne) {
   EXPECT_EQ(-5, seg.query(1, 0, 6, 0));
 }
 
-TEST(SegmentTree, RangeUpdateQueryTwo) {
+TEST(SegmentTree, RangeAddQueryTwo) {
   setupTree();
   seg.add_range(1, 0, 2, -3);
   EXPECT_EQ(-4, seg.query(1, 0, 2, 0));
@@ -60,10 +60,64 @@ TEST(SegmentTree, RangeUpdateQueryTwo) {
   EXPECT_EQ(-4, seg.query(1, 0, 6, 0));
 }
 
-TEST(SegmentTree, RangeUpdateQueryThree) {
+TEST(SegmentTree, RangeAddQueryThree) {
   setupTree();
   seg.add_range(1, 0, 0, -1);
   seg.add_range(1, 1, 3, -2);
   seg.add_range(1, 0, 2, 1);
   EXPECT_EQ(-2, seg.query(1, 0, 3, 0));
 }
+
+SegmentTree seg2;
+int v2[] = {4, 2, 1, 0, 3, 2, 1};
+int n2 = 7;
+
+void setupTree2() {
+  seg2.build(1, 0, n2 - 1);
+  for(int i = 0; i < n2; i++) {
+    seg2.update(1, i, v2[i]);
+  }
+}
+
+TEST(SegmentTree, RangeUpdateQueryOne) {
+  setupTree2();
+  seg2.update_range(1, 0, 2, 3);
+  EXPECT_EQ(3, seg2.update_range_query(1, 0, 2));
+  seg2.update_range(1, 2, 4, 1);
+  EXPECT_EQ(1, seg2.update_range_query(1, 1, 4));
+  seg2.update_range(1, 4, 6, 0);
+  EXPECT_EQ(0, seg2.update_range_query(1, 0, 6));
+}
+
+TEST(SegmentTree, RangeUpdateQueryTwo) {
+  setupTree2();
+  seg2.update_range(1, 1, 2, 2);
+  EXPECT_EQ(2, seg2.update_range_query(1, 0, 2));
+  seg2.update_range(1, 2, 4, 1);
+  EXPECT_EQ(1, seg2.update_range_query(1, 1, 4));
+  seg2.update_range(1, 3, 6, 0);
+  EXPECT_EQ(0, seg2.update_range_query(1, 0, 6));
+}
+
+TEST(SegmentTree, RangeUpdateQueryThree) {
+  setupTree2();
+  seg2.update_range(1, 0, 0, 4);
+  seg2.update_range(1, 1, 2, 1);
+  seg2.update_range(1, 0, 2, 2);
+  EXPECT_EQ(0, seg2.update_range_query(1, 0, 3));
+}
+
+TEST(SegmentTree, RangeUpdateQueryFour) {
+  setupTree2();
+  seg2.update_range(1, 0, 6, 4);
+  EXPECT_EQ(4, seg2.update_range_query(1, 0, 6));
+  seg2.update_range(1, 1, 5, 2);
+  EXPECT_EQ(2, seg2.update_range_query(1, 0, 6));
+  seg2.update_range(1, 0, 6, 0);
+  EXPECT_EQ(0, seg2.update_range_query(1, 0, 6));
+  seg2.update_range(1, 4, 6, 2);
+  EXPECT_EQ(0, seg2.update_range_query(1, 0, 6));
+  seg2.update_range(1, 0, 3, 1);
+  EXPECT_EQ(1, seg2.update_range_query(1, 0, 6));
+}
+
