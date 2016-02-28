@@ -82,21 +82,21 @@ void setupTree2() {
 TEST(SegmentTree, RangeUpdateQueryOne) {
   setupTree2();
   seg2.update_range(1, 0, 2, 3);
-  EXPECT_EQ(3, seg2.update_range_query(1, 0, 2));
+  EXPECT_EQ(3, seg2.query(1, 0, 2));
   seg2.update_range(1, 2, 4, 1);
-  EXPECT_EQ(1, seg2.update_range_query(1, 1, 4));
+  EXPECT_EQ(1, seg2.query(1, 1, 4));
   seg2.update_range(1, 4, 6, 0);
-  EXPECT_EQ(0, seg2.update_range_query(1, 0, 6));
+  EXPECT_EQ(0, seg2.query(1, 0, 6));
 }
 
 TEST(SegmentTree, RangeUpdateQueryTwo) {
   setupTree2();
   seg2.update_range(1, 1, 2, 2);
-  EXPECT_EQ(2, seg2.update_range_query(1, 0, 2));
+  EXPECT_EQ(2, seg2.query(1, 0, 2));
   seg2.update_range(1, 2, 4, 1);
-  EXPECT_EQ(1, seg2.update_range_query(1, 1, 4));
+  EXPECT_EQ(1, seg2.query(1, 1, 4));
   seg2.update_range(1, 3, 6, 0);
-  EXPECT_EQ(0, seg2.update_range_query(1, 0, 6));
+  EXPECT_EQ(0, seg2.query(1, 0, 6));
 }
 
 TEST(SegmentTree, RangeUpdateQueryThree) {
@@ -104,20 +104,20 @@ TEST(SegmentTree, RangeUpdateQueryThree) {
   seg2.update_range(1, 0, 0, 4);
   seg2.update_range(1, 1, 2, 1);
   seg2.update_range(1, 0, 2, 2);
-  EXPECT_EQ(0, seg2.update_range_query(1, 0, 3));
+  EXPECT_EQ(0, seg2.query(1, 0, 3));
 }
 
 TEST(SegmentTree, RangeUpdateQueryFour) {
   setupTree2();
   seg2.update_range(1, 0, 6, 4);
-  EXPECT_EQ(4, seg2.update_range_query(1, 0, 6));
+  EXPECT_EQ(4, seg2.query(1, 0, 6));
   seg2.update_range(1, 1, 5, 2);
-  EXPECT_EQ(2, seg2.update_range_query(1, 0, 6));
+  EXPECT_EQ(2, seg2.query(1, 0, 6));
   seg2.update_range(1, 0, 6, 0);
-  EXPECT_EQ(0, seg2.update_range_query(1, 0, 6));
+  EXPECT_EQ(0, seg2.query(1, 0, 6));
   seg2.update_range(1, 4, 6, 2);
-  EXPECT_EQ(0, seg2.update_range_query(1, 0, 6));
+  EXPECT_EQ(0, seg2.query(1, 0, 6));
   seg2.update_range(1, 0, 3, 1);
-  EXPECT_EQ(1, seg2.update_range_query(1, 0, 6));
+  EXPECT_EQ(1, seg2.query(1, 0, 6));
 }
 
