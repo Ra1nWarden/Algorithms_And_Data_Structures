@@ -6,7 +6,6 @@ using namespace std;
 Node::Node(int v) : v(v) {
   ch[0] = ch[1] = NULL;
   r = rand();
-  w = 1;
   s = 1;
 }
 
@@ -21,7 +20,7 @@ int Node::cmp(int x) const {
 }
 
 void Node::maintain() {
-  s = w;
+  s = 1;
   if(ch[0] != NULL)
     s += ch[0]->s;
   if(ch[1] != NULL)
@@ -41,14 +40,10 @@ void insert(Node*& o, int x) {
   if(o == NULL)
     o = new Node(x);
   else {
-    if(x == o->v) {
-      o->w++;
-    } else {
-      int d = (x < o->v ? 0 : 1);
-      insert(o->ch[d], x);
-      if(o->ch[d]->r > o->r)
-	rotate(o, d^1);
-    }
+    int d = (x <= o->v ? 0 : 1); // Switch this to < for another rank() for duplicates.
+    insert(o->ch[d], x);
+    if(o->ch[d]->r > o->r)
+      rotate(o, d^1);
   }
   o->maintain();
 }
@@ -56,21 +51,17 @@ void insert(Node*& o, int x) {
 void remove(Node*& o, int x) {
   int d = o->cmp(x);
   if(d == -1) {
-    if(o->w == 1) {
-      Node* u = o;
-      if(o->ch[0] != NULL && o->ch[1] != NULL) {
-	int d2 = (o->ch[0]-> r > o->ch[1]->r ? 1 : 0);
-	rotate(o, d2);
-	remove(o->ch[d2], x);
-      } else {
-	if(o->ch[0] == NULL)
-	  o = o->ch[1];
-	else
-	  o = o->ch[0];
-	delete u;
-      }
+    Node* u = o;
+    if(o->ch[0] != NULL && o->ch[1] != NULL) {
+      int d2 = (o->ch[0]-> r > o->ch[1]->r ? 1 : 0);
+      rotate(o, d2);
+      remove(o->ch[d2], x);
     } else {
-      o->w--;
+      if(o->ch[0] == NULL)
+	o = o->ch[1];
+      else
+	o = o->ch[0];
+      delete u;
     }
   } else
     remove(o->ch[d], x);
@@ -82,13 +73,13 @@ int kth(Node* o, int k) {
   if(o == NULL || k <= 0 || k > o->s)
     return 0; // An error occurred.
   int s = (o->ch[1] == NULL ? 0 : o->ch[1]->s);
-  if(k > s && k <= s + o->w)
+  if(k == s + 1)
     return o->v;
   else if(k <= s) {
     return kth(o->ch[1], k);
   }
   else {
-    return kth(o->ch[0], k - s - o->w);
+    return kth(o->ch[0], k - s - 1);
   }
 }
 
@@ -104,7 +95,7 @@ int rank(Node* o, int x) {
     if(sub == 0)
       return 0;
     else
-      return (o->ch[1] == NULL ? o->w : o->ch[1]->s + o->w) + sub;
+      return (o->ch[1] == NULL ? 1 : o->ch[1]->s + 1) + sub;
   }
 }
 

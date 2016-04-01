@@ -7,9 +7,8 @@ struct Node {
   Node* ch[2];
   // r is random key that follows heap property.
   // v is value that follows BST property.
-  // w weight of the node (number of copies of this value).
   // s is the total subtree size.
-  int r, v, w, s;
+  int r, v, s;
   Node(int v);
   bool operator<(const Node& rhs) const;
   int cmp(int x) const;
@@ -21,6 +20,9 @@ void rotate(Node*& o, int d);
 void insert(Node*& o, int x);
 void remove(Node*& o, int x);
 int kth(Node* o, int k);
+// Duplicates are allowed and the rank is calcualted as the worst one.
+// For example, 5, 4, 4, 3, 2, 1. Rank of 4 is 2.
+// To make rank of 4 become 3, change the insert judging condition to < instead of <=.
 int rank(Node* o, int x);
 
 // Memory management
