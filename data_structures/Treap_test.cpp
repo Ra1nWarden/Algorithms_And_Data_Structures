@@ -107,3 +107,42 @@ TEST(Treap, rankDuplicateRemoveTest) {
   EXPECT_EQ(2, rank(root, 3));
   recycle(root);
 }
+
+TEST(Treap, findTest) {
+  Node* root = NULL;
+  insert(root, 2);
+  insert(root, 1);
+  insert(root, 3);
+  insert(root, 4);
+  insert(root, 5);
+  EXPECT_TRUE(find(root, 2));
+  recycle(root);
+}
+
+TEST(Treap, findRemoveTest) {
+  Node* root = NULL;
+  insert(root, 2);
+  insert(root, 1);
+  insert(root, 3);
+  insert(root, 4);
+  insert(root, 5);
+  EXPECT_TRUE(find(root, 2));
+  remove(root, 2);
+  EXPECT_FALSE(find(root, 2));
+  recycle(root);
+}
+
+TEST(Treap, findDuplicateRemoveTest) {
+  Node* root = NULL;
+  insert(root, 2);
+  insert(root, 1);
+  insert(root, 3);
+  insert(root, 3);
+  insert(root, 5);
+  EXPECT_TRUE(find(root, 3));
+  remove(root, 3);
+  EXPECT_TRUE(find(root, 3));
+  remove(root, 3);
+  EXPECT_FALSE(find(root, 3));
+  recycle(root);
+}

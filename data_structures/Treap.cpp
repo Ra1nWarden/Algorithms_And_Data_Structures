@@ -99,6 +99,16 @@ int rank(Node* o, int x) {
   }
 }
 
+bool find(Node* o, int x) {
+  while(o != NULL) {
+    int d = o->cmp(x);
+    if(d == -1)
+      return true;
+    o = o->ch[d];
+  }
+  return false;
+}
+
 void recycle(Node*& x) {
   if(x->ch[0] != NULL)
     recycle(x->ch[0]);

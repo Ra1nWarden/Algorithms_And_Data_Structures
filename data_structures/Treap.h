@@ -18,7 +18,9 @@ struct Node {
 // Treap operations
 void rotate(Node*& o, int d);
 void insert(Node*& o, int x);
+// Call find(o, x) before calling remove.
 void remove(Node*& o, int x);
+bool find(Node* o, int x);
 int kth(Node* o, int k);
 // Duplicates are allowed and the rank is calcualted as the worst one.
 // For example, 5, 4, 4, 3, 2, 1. Rank of 4 is 2.
