@@ -54,3 +54,4 @@
 - Hash Table
 - Hash Heap
 - Expression Tree
+- Treap
