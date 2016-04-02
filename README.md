@@ -55,3 +55,4 @@
 - Hash Heap
 - Expression Tree
 - Treap
+- Splay Tree
