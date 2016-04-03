@@ -20,12 +20,12 @@ const int maxn = 1000;
 
 struct SplayTree {
   int n;
-  Node nodes[maxn];
+  Node nodes[maxn]; // Memory pool for Node allocation.
   Node* root;
-  // Build tree based on size and optionally an array.
-  Node* build(int sz);
+  // Build tree based on the array and size.
+  Node* build(int* arr, int sz);
   // init calls build. Use this method to get a new tree.
-  void init(int sz);
+  void init(int* arr, int sz);
 };
 
 // Splay tree related operations.

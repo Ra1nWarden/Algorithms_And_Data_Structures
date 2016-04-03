@@ -89,22 +89,22 @@ void split(Node* o, int k, Node*& left, Node*& right) {
   left->maintain();
 }
 
-Node* SplayTree::build(int sz) {
+Node* SplayTree::build(int* arr, int sz) {
   if(!sz)
     return NULL;
-  Node* left = build(sz / 2);
-  Node* o = &nodes[++n];
-  o->v = n; // If the tree is built on an array, set it here.
+  Node* left = build(arr, sz / 2);
+  Node* o = &nodes[n];
+  o->v = arr[n++]; // If the tree is built on an array, set it here.
   o->ch[0] = left;
-  o->ch[1] = build(sz - sz / 2 - 1);
+  o->ch[1] = build(arr, sz - sz / 2 - 1);
   o->flip = o->s = 0;
   o->maintain();
   return o;
 }
 
-void SplayTree::init(int sz) {
+void SplayTree::init(int* arr, int sz) {
   n = 0;
-  root = build(sz);
+  root = build(arr, sz);
 }
 
 void traverse(Node* o, vector<int>& ans) {
