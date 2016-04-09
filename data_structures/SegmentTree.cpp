@@ -22,8 +22,10 @@ void SegmentTree::build(int i, int l, int r) {
     return;
   build(LEFT(i), l, MID(l, r));
   build(RIGHT(i), MID(l, r)+1, r);
-  memset(addv, 0, sizeof addv);
-  memset(setv, -1, sizeof setv); // Assume -1 is never set to any range of nodes
+  if(i == 1) { // reset the arrays only when depth is 1.
+    memset(addv, 0, sizeof addv);
+    memset(setv, -1, sizeof setv); // Assume -1 is never set to any range of nodes
+  }
 }
 
 void SegmentTree::update(int i, int k, int val) {
