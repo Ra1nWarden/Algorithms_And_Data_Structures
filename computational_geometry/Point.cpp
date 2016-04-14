@@ -64,6 +64,13 @@ double dist(Point p) {
   return dist(o, p);
 }
 
+double angle(Point a, Point b) {
+  double ans = acos((a * b) / dist(a) / dist(b)); // This is sufficient if any angle below PI is wanted.
+  if((a ^ b) < 0)
+    ans = 2 * PI - ans;
+  return ans;
+}
+
 Point normal(Point A) {
   double L = dist(A);
   return Point(-A.y/L, A.x/L);

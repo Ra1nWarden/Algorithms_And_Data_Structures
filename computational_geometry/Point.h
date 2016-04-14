@@ -35,6 +35,10 @@ double dist(Point a, Point b);
 // return distance between p and origin
 double dist(Point p);
 
+// return the angle between two points (vectors)
+// from a to b in counter-clockwise direction
+double angle(Point a, Point b);
+
 // return unit normal vector
 Point normal(Point A);
 

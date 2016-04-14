@@ -92,6 +92,20 @@ TEST(Point, Distance) {
   doubleEq(5, dist(p3));
 }
 
+TEST(Point, Angle1) {
+  Point a(0, 1);
+  Point b(1, 0);
+  doubleEq(PI * 3 / 2, angle(a, b));
+  doubleEq(PI / 2, angle(b, a));
+}
+
+TEST(Point, Angle2) {
+  Point a(1, 0);
+  Point b(1, 1);
+  doubleEq(PI / 4, angle(a, b));
+  doubleEq(PI * 7 / 4, angle(b, a));
+}
+
 TEST(Point, Normal) {
   Point p4 = normal(p3);
   doubleEq(1.0, dist(p4));
