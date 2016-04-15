@@ -7,6 +7,14 @@ Line::Line() {}
 
 Line::Line(Point _s, Point _e) : s(_s), e(_e) {}
 
+Point Line::unit() {
+  Point ret = e - s;
+  double length = sqrt(ret.x * ret.x + ret.y * ret.y);
+  ret.x /= length;
+  ret.y /= length;
+  return ret;
+}
+
 pair<int, Point> Line::operator&(const Line& b) const {
   Point res = s;
   if(sgn((s - e) ^ (b.s - b.e)) == 0) {

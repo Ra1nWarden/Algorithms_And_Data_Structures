@@ -20,7 +20,7 @@
 - Computational Geometry
   - Points and Lines
   - Triangles
-  - Spheres
+  - Circles and Spheres
   - Polygons
 - Graph
   - Topological Sort

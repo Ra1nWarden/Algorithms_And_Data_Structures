@@ -16,6 +16,7 @@ struct Line {
   // first == 1 -> parallel
   // first == 2 -> intersect, second is the point of intersection
   pair<int, Point> operator&(const Line& b) const;
+  Point unit();
 };
 
 // Intersection between lines(segs)

@@ -10,6 +10,12 @@ void doubleEq(double x, double y) {
   EXPECT_EQ(0, sgn(x - y));
 }
 
+TEST(Line, UnitTest) {
+  Line l(Point(0, 0), Point(4, 0));
+  Point u = l.unit();
+  EXPECT_EQ(Point(1, 0), u);
+}
+
 TEST(Line, IntersectOverlap) {
   const Line l4(Point(2, 2), Point(3, 3));
   pair<int, Point> res = l1 & l4;
