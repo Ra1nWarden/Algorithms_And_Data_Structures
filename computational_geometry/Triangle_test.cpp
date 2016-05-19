@@ -77,3 +77,17 @@ TEST(Triangle, TriangleCenterOfMass) {
   doubleEQ(2 * dist(com, mid23), dist(com, p1));
   doubleEQ(2 * dist(com, mid13), dist(com, p2));
 }
+
+TEST(Triangle, CircumscribedCircleTest) {
+  Circle circle = CircumscribedCircle(Point(0, 0), Point(20, 1), Point(8, 17));
+  doubleEQ(9.73494, circle.center.x);
+  doubleEQ(5.801205, circle.center.y);
+  doubleEQ(11.332389, circle.radius);
+}
+
+TEST(Triangle, InscribedCircleTest) {
+  Circle circle = InscribedCircle(Point(0, 0), Point(20, 1), Point(8, 17));
+  doubleEQ(9.113006, circle.center.x);
+  doubleEQ(6.107686, circle.center.y);
+  doubleEQ(5.644984, circle.radius);
+}

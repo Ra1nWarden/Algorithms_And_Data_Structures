@@ -5,7 +5,8 @@
 
 using namespace std;
 
-const double EPS = 1e-8;
+// Adjust the epsilon if necessary
+const double EPS = 1e-6;
 const double PI = acos(-1.0);
 
 int sgn(double x);

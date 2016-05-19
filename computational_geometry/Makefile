@@ -53,7 +53,7 @@ Triangle.o : Triangle.cpp
 Triangle_test.o : Triangle_test.cpp $(GTEST_HEADERS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c Triangle_test.cpp
 
-Triangle_test : Point.o Line.o Triangle.o Triangle_test.o gtest_main.a
+Triangle_test : Point.o Line.o Triangle.o Circle.o Triangle_test.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
 
 Circle.o : Circle.cpp
