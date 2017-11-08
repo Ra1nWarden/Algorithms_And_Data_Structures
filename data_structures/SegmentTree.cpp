@@ -140,9 +140,9 @@ void SegmentTree::maintain(int i) {
     segTree[i].v = min(segTree[LEFT(i)].v, segTree[RIGHT(i)].v);
   }
   if(setv[i] >= 0) {
-    // For sum, this should be setv[i] * (setv[i].r - setv[i].l + 1);
+    // For sum, this should be setv[i] * (segTree[i].r - segTree[i].l + 1);
     segTree[i].v = setv[i];
   }
-  // For sum, this should be setv[i] * (setv[i].r - setv[i].l + 1);
+  // For sum, this should be addv[i] * (segTree[i].r - segTree[i].l + 1);
   segTree[i].v += addv[i];
 }

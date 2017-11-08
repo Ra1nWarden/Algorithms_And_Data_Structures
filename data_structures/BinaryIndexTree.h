@@ -20,6 +20,13 @@ struct BinaryIndexTree {
   void add(int x, int d);
 };
 
+/**
+ * Range update, single query: build BIT on delta array (delta[i] = v[i] - v[i-1])
+ * Range update, range query: build two BITs for delta and delta * index
+ * Formula: (index + 1) * query on delta BIT - query on (delta * index) BIT
+ * More details: http://blog.csdn.net/zars19/article/details/54620021
+ */
+
 struct BinaryIndexTree2D {
   int C[MAXN][MAXN];
   BinaryIndexTree2D();
