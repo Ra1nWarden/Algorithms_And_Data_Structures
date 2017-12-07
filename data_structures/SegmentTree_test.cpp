@@ -14,7 +14,7 @@ void setupTree() {
   }
 }
 
-TEST(SegmentTree, QueryPoint){
+TEST(SegmentTree, QueryPoint) {
   setupTree();
   for(int i = 0; i < n; i++) {
     EXPECT_EQ(v[i], seg.query(1, i, i));

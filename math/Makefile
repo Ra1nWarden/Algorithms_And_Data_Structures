@@ -3,7 +3,7 @@ GTEST_DIR = ../gtest-1.7.0/
 CPPFLAGS += -isystem $(GTEST_DIR)/include
 CXXFLAGS += -g -Wall -Wextra -pthread
 
-TESTS = Primes_test GcdLcm_test PermutationAndCombination_test Miscellaneous_test ModularArithmetic_test
+TESTS = Primes_test GcdLcm_test PermutationAndCombination_test Miscellaneous_test ModularArithmetic_test Fibonacci_test
 
 GTEST_HEADERS = $(GTEST_DIR)/include/gtest/*.h \
                 $(GTEST_DIR)/include/gtest/internal/*.h
@@ -74,5 +74,14 @@ Miscellaneous_test.o : Miscellaneous.cpp Miscellaneous_test.cpp
 Miscellaneous_test : Miscellaneous.o Miscellaneous_test.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
 
+Fibonacci.o : Fibonacci.cpp
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $^
+
+Fibonacci_test.o : Fibonacci.cpp Fibonacci_test.cpp
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c Fibonacci_test.cpp
+
+Fibonacci_test : Fibonacci.o Fibonacci_test.o gtest_main.a
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
+
 test : $(TESTS)
-	./Primes_test && ./GcdLcm_test && ./PermutationAndCombination_test && ./ModularArithmetic_test && ./Miscellaneous_test
+	./Primes_test && ./GcdLcm_test && ./PermutationAndCombination_test && ./ModularArithmetic_test && ./Miscellaneous_test && ./Fibonacci_test
