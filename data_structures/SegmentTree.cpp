@@ -66,83 +66,72 @@ int SegmentTree::query(int i, int l, int r) {
 void SegmentTree::add_range(int i, int l, int r, int val) {
   if(l == segTree[i].l && r == segTree[i].r) {
     addv[i] += val;
+    segTree[i].v += val;
   } else {
-    pushdown(i);
     int mid = MID(segTree[i].l, segTree[i].r);
-    if(r <= mid) {
+    if(r <= mid)
       add_range(LEFT(i), l, r, val);
-      maintain(RIGHT(i));
-    }
-    else if(l > mid) {
+    else if(l > mid)
       add_range(RIGHT(i), l, r, val);
-      maintain(LEFT(i));
-    }
     else {
       add_range(LEFT(i), l, mid, val);
       add_range(RIGHT(i), mid+1, r, val);
     }
+    segTree[i].v = min(segTree[LEFT(i)].v, segTree[RIGHT(i)].v);
+    // If a sum is needed, do addv[i] * (segTree[i].r - segTree[i].l + 1);
+    segTree[i].v += addv[i];
   }
-  maintain(i);
 }
 
 int SegmentTree::query(int i, int l, int r, int add) {
-  if(setv[i] >= 0) {
-    return setv[i] + addv[i] + add; // Need to add
-  }
-  if(segTree[i].l == l && segTree[i].r == r) {
+  if(l == segTree[i].l && r == segTree[i].r)
     return segTree[i].v + add;
-  }
   int mid = MID(segTree[i].l, segTree[i].r);
-  if(r <= mid) {
-    return query(LEFT(i), l, r, addv[i] + add);
-  } else if(l > mid) {
-    return query(RIGHT(i), l, r, addv[i] + add);
-  } else {
-    return min(query(LEFT(i), l, mid, addv[i] + add), query(RIGHT(i), mid+1, r, addv[i] + add));
-  }
+  if(r <= mid)
+    return query(LEFT(i), l, r, addv[i]+add);
+  else if(l > mid)
+    return query(RIGHT(i), l, r, addv[i]+add);
+  else
+    return min(query(LEFT(i), l, mid, addv[i]+add), query(RIGHT(i), mid+1, r, addv[i]+add));
 }
 
 void SegmentTree::update_range(int i, int l, int r, int val) {
   if(l == segTree[i].l && r == segTree[i].r) {
     setv[i] = val;
-    addv[i] = 0;
   } else {
-    pushdown(i);
+    // Check whether there is a set mark on the ith node (>= 0 is an assumption)
+    // If so, push down the mark
+    if(setv[i] >= 0) {
+      setv[LEFT(i)] = setv[RIGHT(i)] = setv[i];
+      setv[i] = -1; // Reset mark to -1
+    }
     int mid = MID(segTree[i].l, segTree[i].r);
     if(r <= mid) {
       update_range(LEFT(i), l, r, val);
-      maintain(RIGHT(i));
     } else if(l > mid) {
       update_range(RIGHT(i), l, r, val);
-      maintain(LEFT(i));
     } else {
       update_range(LEFT(i), l, mid, val);
       update_range(RIGHT(i), mid+1, r, val);
     }
   }
-  maintain(i);
+  int leftv = setv[LEFT(i)] >= 0 ? setv[LEFT(i)] : segTree[LEFT(i)].v;
+  int rightv = setv[RIGHT(i)] >= 0 ? setv[RIGHT(i)] : segTree[RIGHT(i)].v;
+  segTree[i].v = min(leftv, rightv);
 }
 
-void SegmentTree::pushdown(int i) {
-  // Assume all set values are non-negative
+int SegmentTree::update_range_query(int i, int l, int r) {
   if(setv[i] >= 0) {
-    setv[LEFT(i)] = setv[RIGHT(i)] = setv[i];
-    setv[i] = -1;
-    addv[LEFT(i)] = addv[RIGHT(i)] = 0;
+    return setv[i];
   }
-  addv[LEFT(i)] += addv[i];
-  addv[RIGHT(i)] += addv[i];
-  addv[i] = 0;
-}
-
-void SegmentTree::maintain(int i) {
-  if(segTree[i].l < segTree[i].r) {
-    segTree[i].v = min(segTree[LEFT(i)].v, segTree[RIGHT(i)].v);
+  if(segTree[i].l == l && segTree[i].r == r) {
+    return segTree[i].v;
   }
-  if(setv[i] >= 0) {
-    // For sum, this should be setv[i] * (segTree[i].r - segTree[i].l + 1);
-    segTree[i].v = setv[i];
-  }
-  // For sum, this should be addv[i] * (segTree[i].r - segTree[i].l + 1);
-  segTree[i].v += addv[i];
+  int mid = MID(segTree[i].l, segTree[i].r);
+  if(r <= mid)
+    return update_range_query(LEFT(i), l, r);
+  else if(l > mid)
+    return update_range_query(RIGHT(i), l, r);
+  else
+    return min(update_range_query(LEFT(i), l, mid), update_range_query(RIGHT(i), mid+1, r));
 }

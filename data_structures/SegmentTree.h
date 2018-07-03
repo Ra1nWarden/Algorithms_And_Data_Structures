@@ -31,19 +31,20 @@ struct SegmentTree {
   // i is the node index starting from 1
   // l and r are the query range (inclusive)
   int query(int i, int l, int r);
-
-  // Range add and update queries
+  
+  // Range add and range query
   // Add val at node i from l to r
   void add_range(int i, int l, int r, int val);
-  // Set val to node i from l to r
-  void update_range(int i, int l, int r, int val);
+  // Range query
   // Query at index i from l to r and add is the sum of addv array so far
   int query(int i, int l, int r, int add);
-  // Some helper functions
-  // Push down the change / update on node i
-  void pushdown(int i);
-  // Maintain the ith node
-  void maintain(int i);
+
+  // Range update and range query
+  // Set val to node i from l to r
+  void update_range(int i, int l, int r, int val);
+  // Range query
+  // Query at index i from l to r (named differently for update_range operations)
+  int update_range_query(int i, int l, int r);
 };
 
 #endif
