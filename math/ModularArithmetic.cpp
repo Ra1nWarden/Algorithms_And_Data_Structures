@@ -4,16 +4,38 @@
 #include <map>
 #include <cmath>
 
+int MultModular(int a, int b, int c) {
+  a %= c;
+  b %= c;
+  int ret = 0;
+  int tmp = a;
+  while(b) {
+    if(b & 1) {
+      ret += tmp;
+      if(ret > c) {
+	ret -= c;
+      }
+    }
+    tmp <<= 1;
+    if(tmp > c) {
+      tmp -= c;
+    }
+    b >>= 1;
+  }
+  return ret;
+}
+
 int PowerModular(int a, int n, int m) {
-  int ans = 1;
+  int ret = 1;
+  int temp = a % m;
   while(n) {
     if(n & 1) {
-      ans = (ans * a) % m;
+      ret = MultModular(ret, temp, m);
     }
-    a = (a * a) % m;
+    temp = MultModular(temp, temp, m);
     n >>= 1;
   }
-  return ans;
+  return ret;
 }
 
 bool SolveModularEquation(int a, int b, int n, int& x) {

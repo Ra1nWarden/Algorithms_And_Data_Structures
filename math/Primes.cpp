@@ -1,4 +1,5 @@
 #include "Primes.h"
+#include "ModularArithmetic.h"
 #include <cstring>
 #include <cmath>
 #include <map>
@@ -85,4 +86,40 @@ bool IsPrime(int number) {
   }
   map<int, int> facts = PrimeFactorize(number);
   return facts[number] == 1;
+}
+
+bool MillerRabinHelper(int a, int n, int x, int t) {
+  int ret = PowerModular(a, x, n);
+  int last = ret;
+  for(int i = 1; i <= t; i++) {
+    ret = PowerModular(ret, 2, n);
+    if(ret == 1 && last != 1 && last != n - 1) {
+      return true;
+    }
+    last = ret;
+  }
+  return ret != 1;
+}
+
+bool MillerRabinIsPrime(int n) {
+  if(n < 2)
+    return false;
+  if(n == 2)
+    return true;
+  if(!(n & 1))
+    return false;
+  int x = n - 1;
+  int t = 0;
+  while(!(x & 1)) {
+    x >>= 1;
+    t++;
+  }
+  srand(time(NULL));
+  for(int i = 0; i < S; i++) {
+    int a = rand() % (n - 1) + 1;
+    if(MillerRabinHelper(a, n, x, t)) {
+      return false;
+    }
+  }
+  return true;
 }

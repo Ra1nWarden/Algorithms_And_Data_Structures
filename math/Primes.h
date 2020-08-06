@@ -31,4 +31,9 @@ int CountFactors(int x);
 // Returns whether x is a prime number
 bool IsPrime(int x);
 
+// Miller Rabin primality test
+// A random algorithm to approximately estimate whether n is prime
+const int S = 8; // Set S to be 8 to 10
+bool MillerRabinIsPrime(long long n);
+
 #endif

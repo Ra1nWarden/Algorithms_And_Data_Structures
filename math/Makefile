@@ -35,7 +35,7 @@ Primes.o : Primes.cpp
 Primes_test.o : Primes.cpp Primes_test.cpp $(GTEST_HEADERS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c Primes_test.cpp
 
-Primes_test : Primes.o Primes_test.o gtest_main.a
+Primes_test : Primes.o Primes_test.o ModularArithmetic.o GcdLcm.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
 
 GcdLcm.o : GcdLcm.cpp

@@ -137,3 +137,27 @@ TEST(IsPrime, Seventeen) {
 TEST(IsPrime, BigPrime) {
   EXPECT_TRUE(IsPrime(2147483647));
 }
+
+TEST(MillerRabinIsPrime, One) {
+  EXPECT_FALSE(IsPrime(1));
+}
+
+TEST(MillerRabinIsPrime, Two) {
+  EXPECT_TRUE(IsPrime(2));
+}
+
+TEST(MillerRabinIsPrime, Eight) {
+  EXPECT_FALSE(IsPrime(8));
+}
+
+TEST(MillerRabinIsPrime, Seventeen) {
+  EXPECT_TRUE(IsPrime(17));
+}
+
+TEST(MillerRabinIsPrime, BigPrime) {
+  EXPECT_TRUE(IsPrime(2147483647));
+}
+
+TEST(MillerRabinIsPrime, BigComposite) {
+  EXPECT_FALSE(IsPrime(2147483645));
+}

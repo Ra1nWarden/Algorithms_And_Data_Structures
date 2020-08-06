@@ -5,6 +5,9 @@
 
 using namespace std;
 
+// Calculates (a * b) % c
+int MultModular(int a, int b, int c);
+
 // Calculates a^n \equiv m
 int PowerModular(int a, int n, int m);
 
