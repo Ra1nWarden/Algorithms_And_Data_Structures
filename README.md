@@ -3,6 +3,7 @@
 - Mathematics
   - Prime number generation
   - Prime factorization
+  - Rabin Miller Primality test
   - Euler Phi
   - Solve Diophantine Equations
   - Permutation and Combinations
