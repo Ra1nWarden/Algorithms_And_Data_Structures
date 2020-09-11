@@ -1,8 +1,6 @@
 #include "gtest/gtest.h"
 #include "Treap.h"
 
-using namespace std;
-
 TEST(Treap, kthTest) {
   Node* root = NULL;
   insert(root, 2);
