@@ -68,6 +68,32 @@ int EulerPhi(int number) {
   return result;
 }
 
+vector<int> EulerPhiArr(int x) {
+  vector<int> primes;
+  vector<int> ans(x + 1, 0);
+  ans[1] = 1;
+  for(int i = 2; i <= x; i++) {
+    if(ans[i] == 0) {
+      ans[i] = i - 1;
+      primes.push_back(i);
+    }
+    for(int j = 0; j < primes.size(); j++) {
+      if(i * primes[j] > x) {
+	break;
+      }
+      if(i % primes[j] == 0) {
+	// phi(i * primes[j]) = primes[j] * phi(i)
+	ans[i * primes[j]] = ans[i] * primes[j]; 
+	break;
+      } else {
+	// phi(i * primes[j]) = phi(i) * phi(primes[j]) when gcd(i, primes[j]) = 1
+	ans[i * primes[j]] = ans[i] * ans[primes[j]];
+      }
+    }
+  }
+  return ans;
+}
+
 int CountFactors(int number) {
   map<int, int> facts = PrimeFactorize(number);
   int result = 1;

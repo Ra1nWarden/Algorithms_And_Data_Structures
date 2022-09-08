@@ -102,6 +102,12 @@ TEST(EulerPhi, Seventeen) {
   EXPECT_EQ(16, EulerPhi(17));
 }
 
+TEST(EulerPhiArr, Ten) {
+  vector<int> ans = EulerPhiArr(10);
+  vector<int> expected{0, 1, 1, 2, 2, 4, 2, 6, 4, 6, 4};
+  EXPECT_EQ(expected, ans);
+}
+
 TEST(CountFactors, One) {
   EXPECT_EQ(1, CountFactors(1));
 }

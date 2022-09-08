@@ -23,6 +23,10 @@ map<int, int> PrimeFactorize(int x);
 // e.g. 1 -> 1 (1)
 int EulerPhi(int x);
 
+// Use Euler Sieve to calculate all Euler Phi results for 1 - n
+// Example of applying Euler sieve to multiplicative functions
+vector<int> EulerPhiArr(int x);
+
 // Count the number of factors of x
 // e.g. 8 -> 4 (1, 2, 4, 8)
 // e.g. 24 -> 8 (1, 2, 3, 4, 6, 8, 12, 24)
