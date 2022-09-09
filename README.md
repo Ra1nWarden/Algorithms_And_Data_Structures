@@ -18,6 +18,7 @@
   - Gauss Elimination
   - Adaptive Simpson's Rule for integration
   - Euclid's Algorithm for Polynomials
+  - Fast Fourier Transform
 - Computational Geometry
   - Points and Lines
   - Triangles
