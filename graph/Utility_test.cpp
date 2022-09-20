@@ -283,3 +283,31 @@ TEST(Tarjan, TwoSCC) {
       EXPECT_EQ(2, test.sccno[i]);
   }
 }
+
+TEST(TreeDecomposition, Tree) {
+  vector<int> zero{1, 2, 3};
+  vector<int> one{0, 4};
+  vector<int> two{0};
+  vector<int> three{0, 5, 6};
+  vector<int> four{1};
+  vector<int> five{3};
+  vector<int> six{3};
+  vector<vector<int> > adj{zero, one, two, three, four, five, six};
+  TreeDecomposition tree_decompose(adj);
+  int fa[7] = {0, 0, 0, 0, 1, 3, 3};
+  int depth[7] = {0, 1, 1, 1, 2, 2, 2};
+  int size[7] = {7, 2, 1, 3, 1, 1, 1};
+  int son[7] = {3, 4, -1, 5, -1, -1, -1};
+  int top[7] = {0, 1, 2, 0, 1, 0, 6};
+  int dfn[7] = {0, 4, 6, 1, 5, 2, 3};
+  int rank[7] {0, 3, 5, 6, 1, 4, 2};
+  for(int i = 0; i < 7; i++) {
+    EXPECT_EQ(fa[i], tree_decompose.fa[i]);
+    EXPECT_EQ(depth[i], tree_decompose.depth[i]);
+    EXPECT_EQ(size[i], tree_decompose.size[i]);
+    EXPECT_EQ(son[i], tree_decompose.son[i]);
+    EXPECT_EQ(top[i], tree_decompose.top[i]);
+    EXPECT_EQ(dfn[i], tree_decompose.dfn[i]);
+    EXPECT_EQ(rank[i], tree_decompose.rank[i]);
+  }
+}

@@ -319,3 +319,45 @@ void Tarjan::tarjan() {
       dfs(i);
   }
 }
+
+TreeDecomposition::TreeDecomposition(vector<vector<int> > adj) {
+  tree = adj;
+  // Assuming 0 is root
+  fa[0] = 0;
+  depth[0] = 0;
+  dfs1(0);
+  cnt = 0;
+  dfs2(0, 0); // Path head for root is root itself
+}
+
+void TreeDecomposition::dfs1(int u) {
+  son[u] = -1;
+  size[u] = 1;
+  for(int i = 0; i < tree[u].size(); i++) {
+    int v = tree[u][i];
+    if(v == fa[u])
+      continue;
+    fa[v] = u;
+    depth[v] = depth[u] + 1;
+    dfs1(v);
+    size[u] += size[v];
+    if(son[u] == -1 || size[v] > size[son[u]])
+      son[u] = v;
+  }
+}
+
+void TreeDecomposition::dfs2(int u, int t) {
+  top[u] = t;
+  dfn[u] = cnt;
+  rank[cnt] = u;
+  cnt++;
+  if(son[u] == -1) // Leaf node
+    return;
+  dfs2(son[u], t);
+  for(int i = 0; i < tree[u].size(); i++) {
+    int v = tree[u][i];
+    if(v == fa[u] || v == son[u])
+      continue;
+    dfs2(v, v);
+  }
+}

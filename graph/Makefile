@@ -1,7 +1,7 @@
 CXX = clang++
 GTEST_DIR = ../gtest-1.7.0/
 CPPFLAGS += -isystem $(GTEST_DIR)/include
-CXXFLAGS += -g -Wall -Wextra -pthread
+CXXFLAGS += -g -Wall -Wextra -pthread -std=c++11
 
 TESTS = Utility_test MST_test ShortestPath_test MaximumFlow_test
 

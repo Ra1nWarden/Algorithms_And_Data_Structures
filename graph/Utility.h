@@ -94,4 +94,19 @@ struct Tarjan {
   void tarjan();
 };
 
+struct TreeDecomposition {
+  vector<vector<int> > tree; // Adjacency list
+  int fa[MAXN]; // Father
+  int depth[MAXN]; // Depth
+  int size[MAXN]; // Number of nodes in subtree
+  int son[MAXN]; // Heaviest son
+  int top[MAXN]; // Path head after decomposition
+  int dfn[MAXN]; // DFS sequence
+  int rank[MAXN]; // Reverse of dfn
+  int cnt; // Counter for dfn
+  TreeDecomposition(vector<vector<int> > adj);
+  void dfs1(int u); // Visit u
+  void dfs2(int u, int t); // Visit u with head t
+};
+
 #endif
