@@ -361,3 +361,13 @@ void TreeDecomposition::dfs2(int u, int t) {
     dfs2(v, v);
   }
 }
+
+int TreeDecomposition::LCA(int u, int v) {
+  while(top[u] != top[v]) {
+    if(depth[top[u]] > depth[top[v]])
+      u = fa[top[u]];
+    else
+      v = fa[top[v]];
+  }
+  return (depth[u] < depth[v] ? u : v);
+}

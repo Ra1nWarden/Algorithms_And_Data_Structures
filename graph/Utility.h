@@ -107,6 +107,7 @@ struct TreeDecomposition {
   TreeDecomposition(vector<vector<int> > adj);
   void dfs1(int u); // Visit u
   void dfs2(int u, int t); // Visit u with head t
+  int LCA(int u, int v); // Find LCA of u and v
 };
 
 #endif

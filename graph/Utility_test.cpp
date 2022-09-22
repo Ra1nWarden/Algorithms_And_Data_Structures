@@ -310,4 +310,9 @@ TEST(TreeDecomposition, Tree) {
     EXPECT_EQ(dfn[i], tree_decompose.dfn[i]);
     EXPECT_EQ(rank[i], tree_decompose.rank[i]);
   }
+  // LCA
+  EXPECT_EQ(3, tree_decompose.LCA(5, 6));
+  EXPECT_EQ(0, tree_decompose.LCA(4, 6));
+  EXPECT_EQ(0, tree_decompose.LCA(2, 1));
+  EXPECT_EQ(0, tree_decompose.LCA(0, 1));
 }
