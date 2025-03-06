@@ -14,7 +14,8 @@ struct KMP {
   int f[MAXL];
   KMP();
   /** 
-     Initialize f array.
+     Initialize f array - f array is also known as prefix function.
+     Prefix function is an array (of index i) that stores the longest proper prefix that is also a suffix of substring (0..i)
      (Parameters are global.)
      @param f The fail array that directs to the next possible index in the template.
      @param pattern The string we are looking for (template).
