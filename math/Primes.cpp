@@ -2,6 +2,8 @@
 #include "ModularArithmetic.h"
 #include <cstring>
 #include <cmath>
+#include <cstdlib>
+#include <ctime>
 #include <map>
 #include <vector>
 
