@@ -1,0 +1,58 @@
+name: Tests
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential clang
+
+    - name: Cache GoogleTest
+      uses: actions/cache@v4
+      with:
+        path: googletest-*
+        key: ${{ runner.os }}-gtest-1.15.2
+        restore-keys: |
+          ${{ runner.os }}-gtest-
+
+    - name: Build and test math
+      run: |
+        cd math
+        make test
+
+    - name: Build and test string_processing
+      run: |
+        cd string_processing
+        make test
+
+    - name: Build and test data_structures
+      run: |
+        cd data_structures
+        make test
+
+    - name: Build and test computational_geometry
+      run: |
+        cd computational_geometry
+        make test
+
+    - name: Build and test graph
+      run: |
+        cd graph
+        make test
+
+    - name: Build and test dynamic_programming
+      run: |
+        cd dynamic_programming
+        make test
