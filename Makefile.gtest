@@ -1,25 +1,26 @@
 # GoogleTest configuration
 # This file downloads and builds GoogleTest from GitHub
+# This file is included from subdirectories, so paths use ../ to reference root
 
 GTEST_VERSION = 1.15.2
-GTEST_DIR = googletest-$(GTEST_VERSION)
+GTEST_ROOT = ..
+GTEST_DIR = $(GTEST_ROOT)/googletest-$(GTEST_VERSION)
 GTEST_URL = https://github.com/google/googletest/archive/refs/tags/v$(GTEST_VERSION).tar.gz
-GTEST_ARCHIVE = googletest-$(GTEST_VERSION).tar.gz
 
 # Compiler flags for gtest
 CPPFLAGS += -isystem $(GTEST_DIR)/googletest/include
 
 # GTEST_HEADERS should depend on the GTEST_DIR being present
-# Individual Makefiles can use $(GTEST_DIR) as a dependency marker
+# Individual Makefiles can use $(GTEST_HEADERS) as a dependency marker
 GTEST_HEADERS = $(GTEST_DIR)
 
-# Download and extract GoogleTest if not present
+# Download and extract GoogleTest if not present (downloads to root directory)
 $(GTEST_DIR):
 	@echo "Downloading GoogleTest $(GTEST_VERSION)..."
-	@curl -L -o $(GTEST_ARCHIVE) $(GTEST_URL)
-	@tar -xzf $(GTEST_ARCHIVE)
-	@rm $(GTEST_ARCHIVE)
-	@echo "GoogleTest downloaded and extracted successfully."
+	@cd $(GTEST_ROOT) && curl -L -o googletest-$(GTEST_VERSION).tar.gz $(GTEST_URL)
+	@cd $(GTEST_ROOT) && tar -xzf googletest-$(GTEST_VERSION).tar.gz
+	@cd $(GTEST_ROOT) && rm googletest-$(GTEST_VERSION).tar.gz
+	@echo "GoogleTest downloaded and extracted successfully to root directory."
 
 # Build gtest-all.o
 gtest-all.o: $(GTEST_DIR)

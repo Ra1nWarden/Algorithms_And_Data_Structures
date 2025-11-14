@@ -14,7 +14,7 @@ clean :
 Knapsack.o : Knapsack.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $^
 
-Knapsack_test.o : Knapsack.cpp Knapsack_test.cpp
+Knapsack_test.o : Knapsack.cpp Knapsack_test.cpp $(GTEST_HEADERS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c Knapsack_test.cpp
 
 Knapsack_test : Knapsack.o Knapsack_test.o gtest_main.a

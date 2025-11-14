@@ -14,8 +14,8 @@ clean :
 UnionFindSet.o : UnionFindSet.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $^
 
-UnionFindSet_test.o : UnionFindSet_test.cpp
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $^
+UnionFindSet_test.o : UnionFindSet_test.cpp $(GTEST_HEADERS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c UnionFindSet_test.cpp
 
 UnionFindSet_test : UnionFindSet.o UnionFindSet_test.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@ 
@@ -23,8 +23,8 @@ UnionFindSet_test : UnionFindSet.o UnionFindSet_test.o gtest_main.a
 BigInteger.o : BigInteger.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $^
 
-BigInteger_test.o : BigInteger_test.cpp
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $^
+BigInteger_test.o : BigInteger_test.cpp $(GTEST_HEADERS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c BigInteger_test.cpp
 
 BigInteger_test : BigInteger.o BigInteger_test.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
@@ -32,8 +32,8 @@ BigInteger_test : BigInteger.o BigInteger_test.o gtest_main.a
 BinaryIndexTree.o : BinaryIndexTree.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $^
 
-BinaryIndexTree_test.o : BinaryIndexTree_test.cpp
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $^
+BinaryIndexTree_test.o : BinaryIndexTree_test.cpp $(GTEST_HEADERS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c BinaryIndexTree_test.cpp
 
 BinaryIndexTree_test : BinaryIndexTree.o BinaryIndexTree_test.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
@@ -41,8 +41,8 @@ BinaryIndexTree_test : BinaryIndexTree.o BinaryIndexTree_test.o gtest_main.a
 RMQ.o :	RMQ.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $^
 
-RMQ_test.o : RMQ_test.cpp
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $^
+RMQ_test.o : RMQ_test.cpp $(GTEST_HEADERS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c RMQ_test.cpp
 
 RMQ_test : RMQ.o RMQ_test.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
@@ -50,8 +50,8 @@ RMQ_test : RMQ.o RMQ_test.o gtest_main.a
 SegmentTree.o :	SegmentTree.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $^
 
-SegmentTree_test.o : SegmentTree_test.cpp
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $^
+SegmentTree_test.o : SegmentTree_test.cpp $(GTEST_HEADERS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c SegmentTree_test.cpp
 
 SegmentTree_test : SegmentTree.o SegmentTree_test.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
@@ -59,8 +59,8 @@ SegmentTree_test : SegmentTree.o SegmentTree_test.o gtest_main.a
 MonotonicQueue.o :	MonotonicQueue.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $^
 
-MonotonicQueue_test.o : MonotonicQueue_test.cpp
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $^
+MonotonicQueue_test.o : MonotonicQueue_test.cpp $(GTEST_HEADERS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c MonotonicQueue_test.cpp
 
 MonotonicQueue_test : MonotonicQueue.o MonotonicQueue_test.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
@@ -68,8 +68,8 @@ MonotonicQueue_test : MonotonicQueue.o MonotonicQueue_test.o gtest_main.a
 Rational.o : Rational.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $^
 
-Rational_test.o : Rational_test.cpp
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $^
+Rational_test.o : Rational_test.cpp $(GTEST_HEADERS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c Rational_test.cpp
 
 Rational_test : Rational.o Rational_test.o ../math/GcdLcm.o ../math/ModularArithmetic.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
@@ -77,8 +77,8 @@ Rational_test : Rational.o Rational_test.o ../math/GcdLcm.o ../math/ModularArith
 HashTable.o : HashTable.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $^
 
-HashTable_test.o : HashTable_test.cpp
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $^
+HashTable_test.o : HashTable_test.cpp $(GTEST_HEADERS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c HashTable_test.cpp
 
 HashTable_test : HashTable.o HashTable_test.o ../math/GcdLcm.o ../math/ModularArithmetic.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
@@ -86,8 +86,8 @@ HashTable_test : HashTable.o HashTable_test.o ../math/GcdLcm.o ../math/ModularAr
 HashHeap.o : HashHeap.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $^
 
-HashHeap_test.o : HashHeap_test.cpp
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $^
+HashHeap_test.o : HashHeap_test.cpp $(GTEST_HEADERS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c HashHeap_test.cpp
 
 HashHeap_test : HashHeap.o HashHeap_test.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
@@ -95,8 +95,8 @@ HashHeap_test : HashHeap.o HashHeap_test.o gtest_main.a
 ExpressionTree.o : ExpressionTree.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $^
 
-ExpressionTree_test.o : ExpressionTree_test.cpp
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $^
+ExpressionTree_test.o : ExpressionTree_test.cpp $(GTEST_HEADERS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c ExpressionTree_test.cpp
 
 ExpressionTree_test : ExpressionTree.o ExpressionTree_test.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
@@ -104,8 +104,8 @@ ExpressionTree_test : ExpressionTree.o ExpressionTree_test.o gtest_main.a
 Treap.o : Treap.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $^
 
-Treap_test.o : Treap_test.cpp
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $^
+Treap_test.o : Treap_test.cpp $(GTEST_HEADERS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c Treap_test.cpp
 
 Treap_test : Treap_test.o Treap.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
@@ -113,8 +113,8 @@ Treap_test : Treap_test.o Treap.o gtest_main.a
 SplayTree.o : SplayTree.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $^
 
-SplayTree_test.o : SplayTree_test.cpp
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $^
+SplayTree_test.o : SplayTree_test.cpp $(GTEST_HEADERS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c SplayTree_test.cpp
 
 SplayTree_test : SplayTree_test.o SplayTree.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
