@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/Ra1nWarden/Algorithms_And_Data_Structures.svg?branch=master)](https://travis-ci.org/Ra1nWarden/Algorithms_And_Data_Structures)
+[![Tests](https://github.com/Ra1nWarden/Algorithms_And_Data_Structures/actions/workflows/test.yml/badge.svg)](https://github.com/Ra1nWarden/Algorithms_And_Data_Structures/actions/workflows/test.yml)
 # Algorithms
 - Mathematics
   - Prime number generation
